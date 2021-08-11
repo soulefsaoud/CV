@@ -47,7 +47,7 @@ const UserList = () => {
                 {user.firstname}
               </td>
               <td>{user.email}</td>
-              <td>{user.telNumber}</td>
+              <td>{user.tel}</td>
               <td>
                 <Button onClick={() => deleteUser(user.id)}>Delete</Button>
               </td>

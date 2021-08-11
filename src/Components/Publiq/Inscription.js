@@ -1,12 +1,14 @@
 import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Form } from "react-bootstrap";
-import validate from "./validation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
+
 const InscriptionPage = () => {
+  const [sent, setSent] = useState(false);
+  const [text, setText] = useState("");
   const history = useHistory();
   const [users, setUsers] = useState([]);
   const formik = useFormik({
@@ -26,45 +28,29 @@ const InscriptionPage = () => {
       history.push("/ListUser");
     },
   });
-  //   var templateParams = {
-  //     name: "James",
-  //     notes: "Check this out!",
-  //   };
 
-  //   const sendEmail = (user) => {
-  //     emailjs
-  //       .send("service_geg1l24", "template_g6k4xsn", "user_1w1n0wpwkgE46Lpbb7FBu")
-  //       .then(
-  //         function (response) {
-  //           console.log("SUCCESS!", response.status, response.text);
-  //         },
-  //         function (err) {
-  //           console.log("FAILED...", err);
-  //         }
-  //       );
-  //   };
-
-  //   const sendEmail = (e) => {
-  //     emailjs
-  //       .sendForm(
-  //         "service_geg1l24",
-  //         "template_g6k4xsn",
-  //         e.target,
-  //         "user_1w1n0wpwkgE46Lpbb7FBu"
-  //       )
-  //       .then(
-  //         (result) => {
-  //           console.log(result.text);
-  //         },
-  //         (error) => {
-  //           console.log(error.text);
-  //         }
-  //       );
-  //   };
+  // const sendEmail = (e) => {
+  //   emailjs
+  //     .sendForm(
+  //       "service_geg1l24",
+  //       "template_g6k4xsn",
+  //       e.target,
+  //       "user_1w1n0wpwkgE46Lpbb7FBu"
+  //     )
+  //     .then(
+  //       (result) => {
+  //         console.log(result.text);
+  //       },
+  //       (error) => {
+  //         console.log(error.text);
+  //       }
+  //     );
+  // };
 
   const registerUser = async (user) => {
     try {
       await axios.post("http://localhost:3060/users", user);
+      await axios.post("/email", user);
       //   sendEmail();
     } catch (error) {
       console.error(error);

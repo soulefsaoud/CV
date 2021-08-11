@@ -15,7 +15,7 @@ class Footer extends React.Component {
                   Mentions Legales
                 </Link>
 
-                <Link id="contact" to="/">
+                <Link id="contact" to="/ContactPage">
                   Contacts
                 </Link>
                 <Link id="faq" to="/">

@@ -16,6 +16,7 @@ import ValidationEmailPage from "./Components/Publiq/ValiderEmail";
 import ValiderPassPage from "./Components/Publiq/ValiderMotdePass";
 import UserList from "./Components/Users/ListeUtilisateur";
 import ContactUs from "./Components/Users/EmailService";
+import PresentationCvpage from "./Components/Entreprise/PresentationCv";
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
       <Route path="/MentionsLegalesPage">
         <MentionsLegalesPage />
       </Route>
-      <Route path="/Contact">
+      <Route path="/ContactPage">
         <ContactPage />
       </Route>
       <Route path="/Validation">
@@ -63,6 +64,9 @@ function App() {
       </Route>
       <Route path="/Email">
         <ContactUs />
+      </Route>
+      <Route path="/PresentationCV">
+        <PresentationCvpage />
       </Route>
       <Footer />
     </Router>

@@ -115,16 +115,6 @@ i {
 
 .mainmention {
   width: 100%;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-}
-.mentionl {
-  /* width: 30%;
-  padding: 10px;
-  margin: 20px; */
-  /* max-height: 180px;
-  overflow: hidden;
-  text-overflow: clip; */
 }
 
 .mentionl h6 {
@@ -179,6 +169,42 @@ span {
   align-items: center;
   flex-direction: column;
 }
+
+.divHautCVphiliance {
+  height: 20%;
+  background: linear-gradient(to right, #39b54a, #022707);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.divTitre {
+  width: 40%;
+  text-align: center;
+}
+
+.divHautCVphiliance h5 {
+  border: 2px solid white;
+  font-size: 1.5em;
+}
+.sectionPresentationCV {
+  display: flex;
+}
+
+.cvPhiliance {
+  width: 50%;
+}
+
+.cvPhiliance:first-child {
+  margin-right: 40px;
+}
+
+.partieDroite {
+  color: red;
+  height: 31%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

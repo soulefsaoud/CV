@@ -55,6 +55,9 @@ class BootstrapNavbar extends React.Component {
                   <Nav.Link as={Link} to="/Email">
                     Les emails
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/PresentationCV">
+                    CV philiance
+                  </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

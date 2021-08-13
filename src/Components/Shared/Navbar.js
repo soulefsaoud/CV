@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Image } from "react-bootstrap";
 
 class BootstrapNavbar extends React.Component {
   render() {
@@ -10,12 +10,18 @@ class BootstrapNavbar extends React.Component {
           <div className="col-md-12 ">
             <Navbar
               id="navbar"
-              bg="primary"
+              bg="secondary"
               variant="dark"
               expand="lg"
               sticky="top"
             >
-              <Navbar.Brand href="#home">CV Theque</Navbar.Brand>
+              <Navbar.Brand href="/Home">
+                <Image
+                  src="/images/logo_philiance_sourcing.png"
+                  widht="50"
+                  height="50"
+                />
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto ">

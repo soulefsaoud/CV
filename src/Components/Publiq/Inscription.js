@@ -7,8 +7,6 @@ import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
 
 const InscriptionPage = () => {
-  const [sent, setSent] = useState(false);
-  const [text, setText] = useState("");
   const history = useHistory();
   const [users, setUsers] = useState([]);
   const formik = useFormik({
@@ -26,32 +24,47 @@ const InscriptionPage = () => {
     onSubmit: async (values) => {
       await registerUser(values);
       history.push("/ListUser");
+      emailjs
+        .send(
+          "service_geg1l24",
+          "template_nud6fnp",
+          values,
+          "user_1w1n0wpwkgE46Lpbb7FBu"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     },
   });
 
-  // const sendEmail = (e) => {
-  //   emailjs
-  //     .sendForm(
-  //       "service_geg1l24",
-  //       "template_g6k4xsn",
-  //       e.target,
-  //       "user_1w1n0wpwkgE46Lpbb7FBu"
-  //     )
-  //     .then(
-  //       (result) => {
-  //         console.log(result.text);
-  //       },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  // };
+  const sendEmail = (e) => {
+    emailjs
+      .sendForm(
+        "service_geg1l24",
+        "template_g6k4xsn",
+        e.target,
+        "user_1w1n0wpwkgE46Lpbb7FBu"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   const registerUser = async (user) => {
     try {
       await axios.post("http://localhost:3060/users", user);
-      await axios.post("/email", user);
-      //   sendEmail();
+      // await axios.post("/email", user);
+      sendEmail();
     } catch (error) {
       console.error(error);
     }

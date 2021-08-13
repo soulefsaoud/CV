@@ -1,16 +1,19 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button,Image} from "react-bootstrap";
 
 const ReseauSociauxPage = () => {
   return (
     <div className=" text-center">
       <h5> Se connecter avec </h5>
-      <Button variant="secondary" type="submit" className="mt-4 btn-reseaux">
-        <i className="fab fa-google"></i>
-        Google
-      </Button>
-
-      <br />
+      <div>
+      <Button  variant="warning" type="submit" className="mt-4 btn-reseaux">
+      <Image
+      width={35}
+      height={35}
+      id="google"  src="/images/Google.png" alt=""/>
+       Google   
+       </Button>
+      </div>
       <Button variant="primary" type="submit" className="mt-4 btn-reseaux">
         <i className="fab fa-facebook"></i>
         Facebook

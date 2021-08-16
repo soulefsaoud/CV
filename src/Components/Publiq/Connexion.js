@@ -1,14 +1,13 @@
 import { useFormik } from "formik";
-import { v4 as uuidv4 } from "uuid";
 import { Button, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import emailjs from "emailjs-com";
 
 const ConnexionPage = () => {
+  const history = useHistory();
+
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -21,13 +20,16 @@ const ConnexionPage = () => {
       for (let i = 0; i < users.length; i++) {
         if (
           values.email === users[i].email &&
-          values.password === users[i].password
+          values.password === users[i].password &&
+          users[i].auth === true
         ) {
           k = k + 1;
         }
       }
       if (k > 0) {
-        console.log("supper");
+        //console.log("supper");
+
+        history.push("/Home");
       } else {
         console.log("erreur");
       }

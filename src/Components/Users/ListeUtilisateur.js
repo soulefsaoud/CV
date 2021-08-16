@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const UserList = () => {
-  // state
   const [users, setUsers] = useState([]);
 
-  // ComponentDidMount
   useEffect(() => {
     axios.get("http://localhost:3060/users").then((response) => {
       setUsers(response.data);
@@ -15,9 +13,18 @@ const UserList = () => {
   }, []);
 
   const deleteUser = async (id) => {
+    // try {
+    //   await axios.delete("http://localhost:3060/users/" + id);
+    //   // window.location.reload(false);
+    // } catch (error) {
+    //   console.error(error);
+    // }
     try {
       await axios.delete("http://localhost:3060/users/" + id);
-      window.location.reload(false);
+      const newList = users.filter((user) => {
+        return user.id !== id;
+      });
+      setUsers(newList);
     } catch (error) {
       console.error(error);
     }

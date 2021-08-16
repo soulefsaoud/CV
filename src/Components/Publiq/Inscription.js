@@ -19,6 +19,7 @@ const InscriptionPage = () => {
       tel: "",
       password: "",
       confirm: "",
+      auth: false,
     },
     // validate,
     onSubmit: async (values) => {
@@ -42,29 +43,9 @@ const InscriptionPage = () => {
     },
   });
 
-  const sendEmail = (e) => {
-    emailjs
-      .sendForm(
-        "service_geg1l24",
-        "template_g6k4xsn",
-        e.target,
-        "user_1w1n0wpwkgE46Lpbb7FBu"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   const registerUser = async (user) => {
     try {
       await axios.post("http://localhost:3060/users", user);
-      // await axios.post("/email", user);
-      sendEmail();
     } catch (error) {
       console.error(error);
     }

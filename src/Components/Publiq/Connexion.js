@@ -3,16 +3,19 @@ import { Button, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import ReseauSociauxPage from "../Users/ReseauxSociaux";
 
 const ConnexionPage = () => {
   const history = useHistory();
 
   const [users, setUsers] = useState([]);
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
+
     // validate,
 
     onSubmit: async (values) => {
@@ -27,8 +30,6 @@ const ConnexionPage = () => {
         }
       }
       if (k > 0) {
-        //console.log("supper");
-
         history.push("/Home");
       } else {
         console.log("erreur");
@@ -50,8 +51,11 @@ const ConnexionPage = () => {
   }, []);
 
   return (
-    <div className={"container mt-5"}>
+    <div className={"container mt-5 main"}>
       <Form onSubmit={formik.handleSubmit}>
+        {/* <fieldset> */}
+        {/* <legend>Se connecter</legend> */}
+
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -85,7 +89,12 @@ const ConnexionPage = () => {
         <Button variant="primary" type="submit">
           Envoyer
         </Button>
+        {/* </fieldset> */}
       </Form>
+
+      <div className="reseauSociauxCnx">
+        <ReseauSociauxPage />
+      </div>
     </div>
   );
 };

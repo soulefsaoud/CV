@@ -22,7 +22,6 @@ import { useState } from "react";
 function App() {
   return (
     <Router>
-      {/* <HeaderPage /> */}
       <BootstrapNavbar />
       <Route path="/Home">
         <HomePage />

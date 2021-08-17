@@ -27,7 +27,7 @@ const ValidationEmailPage = () => {
           k = k + 1;
           users[i].auth = true;
           axios
-            .put(`http://localhost:3060/users/${users[i].id}`, users)
+            .put(`http://localhost:3060/users/${users[i].id}`, ...users)
             .then((users) => {
               console.log(users);
             })

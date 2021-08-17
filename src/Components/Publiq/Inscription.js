@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
+import validate from "./validation";
 
 const InscriptionPage = () => {
   const history = useHistory();
@@ -21,10 +22,10 @@ const InscriptionPage = () => {
       confirm: "",
       auth: false,
     },
-    // validate,
+    //validate,
     onSubmit: async (values) => {
       await registerUser(values);
-      history.push("/ListUser");
+      history.push("/Validation");
       emailjs
         .send(
           "service_geg1l24",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Image } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
 
 class BootstrapNavbar extends React.Component {
   render() {
@@ -15,57 +15,59 @@ class BootstrapNavbar extends React.Component {
               expand="lg"
               sticky="top"
             >
-              <Navbar.Brand href="/Home">
+              <Navbar.Brand href="/">
                 <Image
-                  src="/images/logo_philiance_sourcing.png"
-                  widht="50"
+                  src="/images/logo_philiance.png"
+                  alt="image"
+                  width="150"
                   height="50"
                 />
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ms-auto ">
-                  <Nav.Link as={Link} to="/Home">
-                    Accueil
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Inscription">
-                    S'inscrire
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Connexion">
-                    Se connecter
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Profil">
-                    Profil
-                  </Nav.Link>
+              <Nav className="mx-auto ">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <NavDropdown title="Accueil" id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="/Inscription">
+                      S'inscrire
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/Connexion">
+                      Se connecter
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  <NavDropdown title="Profil" id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="/MonProfilCv">
+                      Profil candidat
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/ProfilEntreprise">
+                      Profil entreprise
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/ListUser">
+                      Profil administrateur
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  <NavDropdown
+                    title="Curriculum vitae"
+                    id="navbarScrollingDropdown"
+                  >
+                    <NavDropdown.Item href="/RechercherCv">
+                      Rechercher un CV
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/PresentationCV">
+                      CV Philiance
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/ListCv">Liste CV</NavDropdown.Item>
+                  </NavDropdown>
                   <Nav.Link as={Link} to="/Test">
                     Test
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/MonProfilCv">
-                    Profil details
+                  <Nav.Link as={Link} to="/ContactPage">
+                    Contact
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/ProfilEntreprise">
-                    Profil Entreprise
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/RechercherCv">
-                    Rechercher un CV
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Validation">
-                    Validation
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Validationpass">
-                    ValidationPass
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/ListUser">
-                    Les utilisateurs
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/Email">
+                  {/* <Nav.Link as={Link} to="/Email">
                     Les emails
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/PresentationCV">
-                    CV philiance
-                  </Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
+                  </Nav.Link> */}
+                </Navbar.Collapse>
+              </Nav>
             </Navbar>
           </div>
         </div>
@@ -73,5 +75,4 @@ class BootstrapNavbar extends React.Component {
     );
   }
 }
-
 export default BootstrapNavbar;

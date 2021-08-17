@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import ConnexionPage from "./Components/Publiq/Connexion";
 import InscriptionPage from "./Components/Publiq/Inscription";
 import ProfilPage from "./Components/Users/Profil";
+import TestPage from "./Components/Shared/Test";
 import ProfilDetailsPage from "./Components/Users/ProfilDetails";
 import BootstrapNavbar from "./Components/Shared/Navbar";
 import ProfilEntreprisePage from "./Components/Entreprise/ProfilEntreprise";
@@ -16,98 +17,60 @@ import ValiderPassPage from "./Components/Publiq/ValiderMotdePass";
 import UserList from "./Components/Users/ListeUtilisateur";
 import ContactUs from "./Components/Users/EmailService";
 import PresentationCvpage from "./Components/Entreprise/PresentationCv";
-import BootstrapHeader from "./Components/Shared/Header";
-import ListeCv from "./Components/Users/ListeCv";
-import InstructionlPage from "./Components/Publiq/Instruction";
+import { useState } from "react";
 
 function App() {
   return (
     <Router>
-      <Route path="/PresentationCV">
-        <BootstrapHeader />
-        <PresentationCvpage />
-      </Route>
-
-      <Route path="/RechercherCv">
-        <BootstrapHeader />
-        <RechercheCvPage />
-      </Route>
-
-      <Route exact path="/">
-        <BootstrapNavbar />
+      <BootstrapNavbar />
+      <Route path="/Home">
         <HomePage />
       </Route>
-
-      <Footer />
-
       <Route path="/Connexion">
-        <BootstrapNavbar />
         <ConnexionPage />
       </Route>
-
       <Route path="/Inscription">
-        <BootstrapNavbar />
         <InscriptionPage />
       </Route>
-
       <Route path="/Profil">
-        <BootstrapNavbar />
         <ProfilPage />
       </Route>
-
-      {/* <Route path="/Test">
+      <Route path="/Test">
         <TestPage />
-      </Route>   */}
-
+      </Route>
       <Route path="/MonProfilCv">
-        <BootstrapNavbar />
         <ProfilDetailsPage />
       </Route>
-
       <Route path="/ProfilEntreprise">
-        <BootstrapNavbar />
         <ProfilEntreprisePage />
       </Route>
-
+      <Route path="/RechercherCv">
+        <RechercheCvPage />
+      </Route>
       <Route path="/MentionsLegalesPage">
-        <BootstrapNavbar />
         <MentionsLegalesPage />
       </Route>
-
       <Route path="/ContactPage">
-        <BootstrapNavbar />
         <ContactPage />
       </Route>
-
       <Route path="/Validation">
-        <BootstrapNavbar />
         <ValidationEmailPage />
       </Route>
-
-      <Route path="/Instruction">
-        <BootstrapNavbar />
-        <InstructionlPage />
-      </Route>
-
       <Route path="/Validationpass">
-        <BootstrapNavbar />
         <ValiderPassPage />
       </Route>
-
       <Route path="/ListUser">
-        <BootstrapNavbar />
         <UserList />
       </Route>
-
       <Route path="/Email">
-        <BootstrapNavbar />
         <ContactUs />
       </Route>
-      <Route path="/ListeCv">
-        <BootstrapHeader />
-        <ListeCv />
+      <Route path="/PresentationCV">
+        <PresentationCvpage />
       </Route>
+      <Footer />
     </Router>
   );
 }
+
 export default App;

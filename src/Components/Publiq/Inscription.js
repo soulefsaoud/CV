@@ -14,12 +14,15 @@ const InscriptionPage = () => {
     initialValues: {
       id: "",
       token: uuidv4(),
+
       email: "",
       firstname: "",
       lastname: "",
       tel: "",
+      role: "user",
       password: "",
       confirm: "",
+
       auth: false,
     },
     //validate,

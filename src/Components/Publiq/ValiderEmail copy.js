@@ -1,54 +1,53 @@
+import React from "react";
 import { useFormik } from "formik";
 import { Button, Form } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import ReseauSociauxPage from "../Users/ReseauxSociaux";
-import GoogleBtn from "./GoogleBtn";
+import validate from "./validateMailAdress";
+import axios from "axios";
 
-import FacebookBtn from "./FacebookBtn";
-import TwitterBtn from "./TwitterBtn";
-import GithubBtn from "./GithubBtn";
-
-const ConnexionPage = () => {
+const ValidationEmailPage = () => {
   const history = useHistory();
-
   const [users, setUsers] = useState([]);
 
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      token: "",
+      auth: true,
     },
-
-    // validate,
-
+    validate,
     onSubmit: async (values) => {
+      console.log(formik.value.au);
       let k = 0;
+
       for (let i = 0; i < users.length; i++) {
         if (
           values.email === users[i].email &&
-          values.password === users[i].password &&
-          users[i].auth === true
+          values.token === users[i].token
         ) {
           k = k + 1;
+          users[i].auth = true;
+          axios
+            .put(`http://localhost:3060/users/${users[i].id}`)
+            .then((users) => {
+              console.log(users);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       }
-      if (k > 0) {
-        history.push("/Home");
+      if (k === 1) {
+        console.log("supper");
+
+        history.push("/");
       } else {
         console.log("erreur");
       }
     },
   });
 
-  // const Login = (details) => {
-  //   console.log(details);
-  // };
-
-  // const Logout = () => {
-  //   console.log("logout");
-  // };
   useEffect(() => {
     axios
       .get("http://localhost:3060/users")
@@ -56,10 +55,9 @@ const ConnexionPage = () => {
   }, []);
 
   return (
-    <div className={"container mt-5 main"}>
+    <div className={"container mt-5"}>
       <Form onSubmit={formik.handleSubmit}>
-        {/* <fieldset> */}
-        {/* <legend>Se connecter</legend> */}
+        <h4>Valider Votre adresse E-mail</h4>
 
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
@@ -76,36 +74,27 @@ const ConnexionPage = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Mot de passe</Form.Label>
+          <Form.Label>
+            Entrer le Token qui vous a été envoyé par mail{" "}
+          </Form.Label>
           <Form.Control
-            type="password"
-            name={"password"}
-            value={formik.values.password}
+            type="text"
+            name={"token"}
+            value={formik.values.token}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           <Form.Text className="text-danger">
-            {formik.touched.password &&
-              formik.errors.password &&
-              formik.errors.password}
+            {formik.touched.token && formik.errors.token && formik.errors.token}
           </Form.Text>
         </Form.Group>
 
         <Button variant="primary" type="submit">
           Envoyer
         </Button>
-        {/* </fieldset> */}
       </Form>
-
-      <div className="reseauSociauxCnx">
-        <ReseauSociauxPage />
-      </div>
-      <GoogleBtn />
-      <TwitterBtn />
-      <FacebookBtn />
-      <GithubBtn />
     </div>
   );
 };
 
-export default ConnexionPage;
+export default ValidationEmailPage;

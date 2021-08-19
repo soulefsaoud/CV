@@ -29,8 +29,19 @@ const UserList = () => {
       console.error(error);
     }
   };
-
-  console.log(users);
+  // const userRole = async (id) => {
+  //   for (let i = 0; i < users.length; i++) {
+  //     users[i].role = "admin";
+  //     axios
+  //       .put(`http://localhost:3060/users/${users[i].id}`, ...users)
+  //       .then((users) => {
+  //         console.log(users);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
 
   return (
     <div>
@@ -43,6 +54,7 @@ const UserList = () => {
             <th>Email</th>
             <th>Numero de telephone</th>
             <th>Actions</th>
+            <th>Roles</th>
           </tr>
         </thead>
         <tbody>
@@ -55,8 +67,12 @@ const UserList = () => {
               </td>
               <td>{user.email}</td>
               <td>{user.tel}</td>
+              <td>{user.role}</td>
               <td>
                 <Button onClick={() => deleteUser(user.id)}>Delete</Button>
+              </td>
+              <td>
+                {/* <Button onClick={() => userRole(user.id)}>Role Admin</Button> */}
               </td>
             </tr>
           ))}

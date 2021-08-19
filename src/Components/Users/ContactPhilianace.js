@@ -3,11 +3,12 @@ import React from "react";
 const ContactPage = () => {
   return (
     <main className="main">
-      <div className="text-center mb-4">
+      <div className="text-center bg-custom mb-4 border border-primary rounded-pill">
         <h1>Contact</h1>
       </div>
-      <section className="d-flex ">
-        <div className="w-50">
+
+      <section className="row  border border-primary rounded">
+        <div className=" col m-5 w-50">
           <div>
             <h3>Adresse :</h3>
             <p>Philiance</p>
@@ -18,7 +19,7 @@ const ContactPage = () => {
             <p>
               Email :
               <a href="mailto:contact-ildefrance@philiance.com">
-                contact-ildefrance@philiance.com
+                contact-iledefrance@philiance.com
               </a>
             </p>
           </div>
@@ -28,13 +29,13 @@ const ContactPage = () => {
             <p>Tèl : 01 69 47 45 90</p>
           </div>
         </div>
-        <div className="w-50">
-          <h3>Map</h3>
+        <div className="col m-5">
+          <h3>Carte</h3>
+
           <img className="imageMap" src="images/philiancePNG.PNG" alt="" />
         </div>
       </section>
     </main>
   );
 };
-
 export default ContactPage;

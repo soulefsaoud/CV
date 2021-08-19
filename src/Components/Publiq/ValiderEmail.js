@@ -26,8 +26,10 @@ const ValidationEmailPage = () => {
         ) {
           k = k + 1;
           users[i].auth = true;
+          // console.log(users);
+
           axios
-            .put(`http://localhost:3060/users/${users[i].id}`, ...users)
+            .put(`http://localhost:3060/users/${users[i].id}`, users)
             .then((users) => {
               console.log(users);
             })
@@ -39,7 +41,7 @@ const ValidationEmailPage = () => {
       if (k === 1) {
         console.log("supper");
 
-        history.push("/Home");
+        history.push("/");
       } else {
         console.log("erreur");
       }

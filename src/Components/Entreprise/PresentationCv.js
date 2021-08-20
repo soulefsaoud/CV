@@ -10,11 +10,14 @@ const PresentationCvpage = () => {
             <Form className="d-flex">
               <FormControl
                 type="search"
-                placeholder="Search"
+                placeholder="Rechercher"
                 className="mr-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button
+                className="fa fa-search"
+                variant="outline-success"
+              ></Button>
             </Form>
           </Col>
         </Row>
@@ -37,6 +40,35 @@ const PresentationCvpage = () => {
                 variant="top"
                 src="images/logo_philiance_sourcing.png"
               />
+              <Card className="m-4 bg-secondary text-white">
+                <Card.Body>
+                  <Card.Title claasName="text-white">PROFIL :</Card.Title>
+                  <Card.Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consectetur, ut.
+                  </Card.Text>
+                  <Card.Title>CENTRES D'INTERETS :</Card.Title>
+                  <Card.Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consectetur, ut.
+                  </Card.Text>
+                  <Card.Title>CONTACT :</Card.Title>
+                  <Card.Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Consectetur, ut.
+                  </Card.Text>
+                  <Card.Link>
+                    <a href="http://www.philiance.com/">Philiance Formation</a>
+                  </Card.Link>
+                  <Card.Img
+                    className="formation"
+                    variant="top"
+                    src="images/logo_philiance.png"
+                    widht=""
+                    height="60"
+                  />
+                </Card.Body>
+              </Card>
             </Col>
             <Col className=" cvPhiliance" lg={6}>
               <Card className="mb-4 ">

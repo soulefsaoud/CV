@@ -13,12 +13,6 @@ const UserList = () => {
   }, []);
 
   const deleteUser = async (id) => {
-    // try {
-    //   await axios.delete("http://localhost:3060/users/" + id);
-    //   // window.location.reload(false);
-    // } catch (error) {
-    //   console.error(error);
-    // }
     try {
       await axios.delete("http://localhost:3060/users/" + id);
       const newList = users.filter((user) => {
@@ -29,19 +23,13 @@ const UserList = () => {
       console.error(error);
     }
   };
-  // const userRole = async (id) => {
-  //   for (let i = 0; i < users.length; i++) {
-  //     users[i].role = "admin";
-  //     axios
-  //       .put(`http://localhost:3060/users/${users[i].id}`, ...users)
-  //       .then((users) => {
-  //         console.log(users);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
+  const userRole = async (users) => {
+    console.log(users);
+    if (users.role === "user") {
+      users.role = "admin";
+      axios.put(`http://localhost:3060/users/` + users.id, users);
+    }
+  };
 
   return (
     <div>
@@ -53,8 +41,9 @@ const UserList = () => {
             <th>NomPrenom</th>
             <th>Email</th>
             <th>Numero de telephone</th>
-            <th>Actions</th>
+
             <th>Roles</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -72,7 +61,7 @@ const UserList = () => {
                 <Button onClick={() => deleteUser(user.id)}>Delete</Button>
               </td>
               <td>
-                {/* <Button onClick={() => userRole(user.id)}>Role Admin</Button> */}
+                <Button onClick={() => userRole(user)}>Role Admin</Button>
               </td>
             </tr>
           ))}

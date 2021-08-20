@@ -189,6 +189,14 @@ span {
   color: red;
   height: 31%;
 }
+.profil {
+  width: 50% !important;
+}
+.philiance {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 115, 0);
+}
 
 @media screen and (max-width: 500px) {
   .divHautCVphiliance h5 {

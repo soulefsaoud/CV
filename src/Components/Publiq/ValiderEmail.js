@@ -26,16 +26,11 @@ const ValidationEmailPage = () => {
         ) {
           k = k + 1;
           users[i].auth = true;
-          // console.log(users);
-
-          axios
-            .put(`http://localhost:3060/users/${users[i].id}`, users)
-            .then((users) => {
-              console.log(users);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          console.log(users);
+          const response = axios.put(
+            `http://localhost:3060/users/${users[i].id}`,
+            users[i]
+          );
         }
       }
       if (k === 1) {
@@ -43,6 +38,7 @@ const ValidationEmailPage = () => {
 
         history.push("/");
       } else {
+        alert("token ou email invalide");
         console.log("erreur");
       }
     },

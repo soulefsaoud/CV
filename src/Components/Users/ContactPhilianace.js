@@ -1,4 +1,5 @@
 import React from "react";
+import SimpleMap from "./GoogleCard";
 
 const ContactPage = () => {
   return (
@@ -31,8 +32,8 @@ const ContactPage = () => {
         </div>
         <div className="col m-5">
           <h3>Carte</h3>
-
-          <img className="imageMap" src="images/philiancePNG.PNG" alt="" />
+          <SimpleMap/>
+          
         </div>
       </section>
     </main>

@@ -5,7 +5,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
 import GoogleBtn from "./GoogleBtn";
-
 import FacebookBtn from "./FacebookBtn";
 import TwitterBtn from "./TwitterBtn";
 import GithubBtn from "./GithubBtn";

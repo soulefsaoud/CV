@@ -19,6 +19,8 @@ import PresentationCvpage from "./Components/Entreprise/PresentationCv";
 import BootstrapHeader from "./Components/Shared/Header";
 import ListeCv from "./Components/Users/ListeCv";
 import InstructionlPage from "./Components/Publiq/Instruction";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   return (

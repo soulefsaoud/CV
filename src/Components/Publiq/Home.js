@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component, useEffect } from "react";
 import { Figure } from "react-bootstrap";
 import { useState } from "react";
+import axios from "axios";
 
 const HomePage = () => {
   const [users, setUsers] = useState([]);

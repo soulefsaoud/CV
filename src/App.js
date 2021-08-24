@@ -14,7 +14,10 @@ import ValiderPassPage from "./Components/Publiq/ValiderMotdePass";
 import PresentationCvpage from "./Components/Entreprise/PresentationCv";
 import ListeCv from "./Components/Users/ListeCv";
 import FooterPage from "./Components/Shared/Footer";
-
+import ProfilPage from "./Components/Users/Profil";
+import ProfilEntreprisePage from "./Components/Entreprise/ProfilEntreprise";
+// import { hasAuthenticated } from "./Components/Services/AuthApi";
+import AuthenticatedRoute from "./Components/Contexts/AuthenticatedRoute";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState();
   return (
@@ -24,6 +27,12 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Homepage} />
+            <Route exact path="/MonProfilCv" component={ProfilPage} />
+            <Route
+              exact
+              path="/ProfilEntreprise"
+              component={ProfilEntreprisePage}
+            />
             <Route exact path="/ListUser" component={UserList} />
             <Route exact path="/Inscription" component={InscriptionPage} />
             <Route exact path="/Connexion" component={ConnexionPage} />
@@ -32,6 +41,7 @@ function App() {
             <Route exact path="/Validationpass" component={ValiderPassPage} />
             <Route exact path="/ListeCv" component={ListeCv} />
             <Route exact path="/RechercheCV" component={RechercheCvPage} />
+            <AuthenticatedRoute path="/MonProfilCv" component={ProfilPage} />
 
             <Route
               exact

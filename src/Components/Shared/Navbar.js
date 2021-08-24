@@ -1,115 +1,92 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
+import { Navbar, Nav, Image } from "react-bootstrap";
 import Auth from "../Contexts/Auth";
-
-// import axios from "axios";
-
+import { logout } from "../Services/AuthApi";
 const BootstrapNavbar = () => {
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   axios.get("http://localhost:3060/users").then((user) => {
-  //     setUsers(user.data);
-  //     for (let index = 0; index < user.data.length; index++) {
-  //       console.log(user.data[index].id);
-  //     }
-  //   });
-  // }, []);
   const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
+  const handleLogout = () => {
+    logout();
+    setIsAuthenticated(false);
+  };
 
   return (
     <div className="mb-4">
       <div className="row">
         <div className="col-md-12 ">
-          <Navbar
-            id="navbar"
-            bg="secondary"
-            variant="dark"
-            expand="lg"
-            sticky="top"
-          >
-            <Navbar.Brand href="/">
-              <Image
-                src="/images/logo_philiance.png"
-                alt="image"
-                width="150"
-                height="50"
-              />
-            </Navbar.Brand>
-            <Nav className="mx-auto ">
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                {(!isAuthenticated && (
-                  <>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/Connexion">
-                        Se connecter
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/Inscription">
-                        S'enregistrer
-                      </NavLink>
-                    </li>
-                  </>
-                )) || (
-                  <>
-                    <li>
-                      {" "}
-                      <NavDropdown title="Accueil" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="/Inscription">
-                          S'inscrire
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/Connexion">
+          <ul className="navbar-nav mr-auto">
+            <Navbar
+              id="navbar"
+              bg="secondary"
+              variant="dark"
+              expand="lg"
+              sticky="top"
+            >
+              <Navbar.Brand to="/">
+                <Image
+                  src="/images/logo_philiance.png"
+                  alt="image"
+                  width="150"
+                  height="50"
+                />
+              </Navbar.Brand>
+              <Nav className="mx-auto ">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  {(!isAuthenticated && (
+                    <>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/Connexion">
                           Se connecter
-                        </NavDropdown.Item>
-                      </NavDropdown>
-                    </li>
-                    <li>
-                      {" "}
-                      <NavDropdown title="Profil" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="/MonProfilCv">
-                          Profil candidat
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/ProfilEntreprise">
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/Inscription">
+                          S'enregistrer
+                        </NavLink>
+                      </li>
+                    </>
+                  )) || (
+                    <>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/MonProfilCv">
+                          Profil Condidat
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/ProfilEntreprise">
                           Profil entreprise
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/ListUser">
-                          Profil administrateur
-                        </NavDropdown.Item>
-                      </NavDropdown>
-                    </li>
-                    <li>
-                      {" "}
-                      <NavDropdown
-                        title="Curriculum vitae"
-                        id="navbarScrollingDropdown"
-                      >
-                        <NavDropdown.Item href="/RechercherCv">
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/RechercherCv">
                           Rechercher un CV
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/PresentationCV">
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/PresentationCV">
                           CV Philiance
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="/ListCv">
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/ListeCv">
                           Liste CV
-                        </NavDropdown.Item>
-                      </NavDropdown>
-                    </li>
-                    <NavLink className="nav-link" to="/Test">
-                      Test
-                    </NavLink>
-                    <NavLink className="nav-link" to="/ContactPage">
-                      Contact
-                    </NavLink>
-                  </>
-                )}
-                {/* <Nav.Link as={Link} to="/Email">
-                    Les emails
-                  </Nav.Link> */}
-              </Navbar.Collapse>
-            </Nav>
-          </Navbar>
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <button
+                          className="btn btn-danger"
+                          onClick={handleLogout}
+                        >
+                          Déconnexion
+                        </button>
+                      </li>
+                    </>
+                  )}
+                </Navbar.Collapse>
+              </Nav>
+            </Navbar>
+          </ul>
         </div>
       </div>
     </div>

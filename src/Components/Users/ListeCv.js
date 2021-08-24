@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import React from "react";
+import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const ListeCv = () => {
-  const [users, setUsers] = useState([]);
-
   return (
     <main className="container main w-50">
       <div className="text-center">

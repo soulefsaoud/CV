@@ -194,7 +194,8 @@ const MentionsLegalesPage = () => {
           tribunaux français seront seuls compétents pour en connaître. Pour
           toute question relative à l’application des présentes CGU, vous pouvez
           joindre l’éditeur aux coordonnées inscrites à l’ARTICLE 1. CGU
-          réalisées sur <a href="#">https://legalplace.fr/</a>
+          réalisées sur{" "}
+          <a href="https://legalplace.fr/">https://legalplace.fr/</a>
         </p>
       </div>
     </main>

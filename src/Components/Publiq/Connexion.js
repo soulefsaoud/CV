@@ -1,16 +1,19 @@
 import { useFormik } from "formik";
 import { Button, Form } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import Auth from "../Contexts/Auth";
+
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
 import GoogleBtn from "./GoogleBtn";
 import FacebookBtn from "./FacebookBtn";
 import TwitterBtn from "./TwitterBtn";
 import GithubBtn from "./GithubBtn";
 
-const ConnexionPage = () => {
+const ConnexionPagee = () => {
   const history = useHistory();
+  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
 
   const [users, setUsers] = useState([]);
 
@@ -34,20 +37,15 @@ const ConnexionPage = () => {
         }
       }
       if (k > 0) {
-        history.push("/Home");
+        const response = await axios.get("http://localhost:3060/users");
+        setIsAuthenticated(response);
+        history.replace("/");
+        alert("suppper");
       } else {
         console.log("erreur");
       }
     },
   });
-
-  // const Login = (details) => {
-  //   console.log(details);
-  // };
-
-  // const Logout = () => {
-  //   console.log("logout");
-  // };
   useEffect(() => {
     axios
       .get("http://localhost:3060/users")
@@ -94,17 +92,14 @@ const ConnexionPage = () => {
           Envoyer
         </Button>
         {/* </fieldset> */}
+        <Link to="/ValidationPass">Mot de passe oublié?</Link>
       </Form>
 
       <div className="reseauSociauxCnx">
         <ReseauSociauxPage />
       </div>
-      <GoogleBtn />
-      <TwitterBtn />
-      <FacebookBtn />
-      <GithubBtn />
     </div>
   );
 };
 
-export default ConnexionPage;
+export default ConnexionPagee;

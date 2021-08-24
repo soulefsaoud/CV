@@ -1,11 +1,7 @@
-import React, { Component, useEffect } from "react";
+import React from "react";
 import { Figure } from "react-bootstrap";
-import { useState } from "react";
-import axios from "axios";
 
 const HomePage = () => {
-  const [users, setUsers] = useState([]);
-
   return (
     <div className="text-center">
       <h1>Bienvenue sur votre CV-Thèque</h1>

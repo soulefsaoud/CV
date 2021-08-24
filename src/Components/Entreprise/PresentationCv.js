@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form, Button, Row, Col, FormControl, Card } from "react-bootstrap";
 
 const PresentationCvpage = () => {

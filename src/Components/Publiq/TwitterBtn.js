@@ -1,8 +1,6 @@
-import React from "react";
 import TwitterLogin from "react-twitter-login";
 
-
-export default (props) => {
+const TwitterBtn = () => {
   const authHandler = (err, data) => {
     console.log(err, data);
   };
@@ -15,3 +13,4 @@ export default (props) => {
     />
   );
 };
+export default TwitterBtn;

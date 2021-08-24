@@ -1,7 +1,4 @@
-import { useState } from "react";
 const validate = (values) => {
-  // const [users, setUsers] = useState([]);
-
   const errors = {};
   if (!values.firstname) {
     errors.firstname = "Merci de communiquer votre prénom";

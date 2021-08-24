@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
-import validate from "./validation";
+// import validate from "./validation";
 
 const InscriptionPage = () => {
   const history = useHistory();

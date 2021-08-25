@@ -1,10 +1,15 @@
 import React from "react";
-import { Figure } from "react-bootstrap";
+import { Figure, Navbar, Image, Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage = ({ user }) => {
   return (
-    <div className="text-center">
-      <h1>Bienvenue sur votre CV-Thèque</h1>
+    <div className="container mt-5">
+      <h1 className="text-center">
+        {user && user.isAuthenticated
+          ? "Bonjour " + user.email
+          : "Vous n'êtes pas identifié"}
+      </h1>
       <Figure>
         <Figure.Image
           width={1200}

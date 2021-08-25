@@ -33,7 +33,9 @@ const ProfilPage = () => {
             Reliez votre compte à un réseau social pour l'utiliser comme moyen
             de connexion
           </p>
-          <ReseauSociauxPage />
+          <div className="reseauSociauxCnx">
+            <ReseauSociauxPage />
+          </div>
         </div>
       </section>
     </main>

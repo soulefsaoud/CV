@@ -1,7 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
-
 import { getItem, addItem, removeItem } from "./LocalStorage";
 
 export function hasAuthenticated() {
@@ -15,19 +14,10 @@ export function hasAuthenticated() {
   return result;
 }
 
-export function login() {
-  return axios
-    .get("http://localhost:3060/users")
-    .then((response) => response.data.token)
-    .then(() => {
-      addItem("Token", uuidv4());
-
-      return true;
-    });
-}
-
 export function logout() {
-  removeItem("Token");
+  removeItem("loggedUser");
+
+  window.location.reload();
 }
 
 function tokenIsValid(token) {

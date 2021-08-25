@@ -1,19 +1,14 @@
-import { useFormik } from "formik";
 import { Button, Form } from "react-bootstrap";
-import { useEffect, useState, useContext } from "react";
-import Auth from "../Contexts/Auth";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
 
-import { login } from "../Services/AuthApi";
+const ConnexionPagee = ({ setLoggedUser }) => {
+  const history = useHistory();
 
-const ConnexionPagee = ({ history }) => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
-
-  const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
 
   const [user, setUser] = useState({
     email: "",
@@ -25,37 +20,22 @@ const ConnexionPagee = ({ history }) => {
     setUser({ ...user, [name]: value });
   };
 
+  // PROPOSITION DE JULIEN
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let k = 0;
-    for (let i = 0; i < users.length; i++) {
-      if (
-        user.email === users[i].email &&
-        user.password === users[i].password &&
-        users[i].auth === true
-      ) {
-        k = k + 1;
-      }
-    }
-    if (k > 0) {
-      const response = await login();
-      setIsAuthenticated(response);
-      console.log(response);
-      history.replace("/");
-      alert("suppper");
-      // localStorage.setItem(user.email, uuidv4());
+    const { data } = await axios.get("http://localhost:3060/users");
+    const exist = data.find(
+      (u) => u.email === user.email && u.password === user.password
+    );
+    if (exist) {
+      console.log(exist);
+      setLoggedUser({ ...user, isAuthenticated: true });
+      history.push("/");
     } else {
-      console.log("erreur");
+      setLoggedUser(null);
+      setError("Identifiants incorrects");
     }
   };
-  useEffect(() => {
-    axios
-      .get("http://localhost:3060/users")
-      .then((result) => setUsers(result.data));
-    if (isAuthenticated) {
-      history.replace("/");
-    }
-  }, [history, isAuthenticated]);
 
   return (
     <div className={"container mt-5 main"}>
@@ -79,8 +59,11 @@ const ConnexionPagee = ({ history }) => {
         </Button>
         <Link to="/ValidationPass">Mot de passe oublié?</Link>
       </Form>
+      {error && <p className={"text-danger"}>{error}</p>}
 
-      <div className="reseauSociauxCnx">{/* <ReseauSociauxPage /> */}</div>
+      <div className="reseauSociauxCnx">
+        <ReseauSociauxPage />
+      </div>
     </div>
   );
 };

@@ -32,46 +32,48 @@ const UserList = () => {
   };
 
   return (
-    <div>
-      <h1>Les utilisateurs sont:</h1>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>NomPrenom</th>
-            <th>Email</th>
-            <th>Numero de telephone</th>
-
-            <th>Roles</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td key={user.id}>
-                {user.lastname}
-                {user.firstname}
-              </td>
-              <td>{user.email}</td>
-              <td>{user.tel}</td>
-              <td>{user.role}</td>
-              <td>
-                <Button onClick={() => deleteUser(user.id)}>Delete</Button>
-              </td>
-              <td>
-                <Button onClick={() => userRole(user)}>Role Admin</Button>
-              </td>
+    <main className="container main w-50">
+      <div className="text-center">
+        <h1>Liste des utilisateurs</h1>
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Numero de telephone</th>
+              <th>Rôle</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td key={user.id}>
+                  {user.lastname}
+                  {user.firstname}
+                </td>
+                <td>{user.email}</td>
+                <td>{user.tel}</td>
+                <td>{user.role}</td>
+                <td>
+                  <Button variant="danger" onClick={() => deleteUser(user.id)}>
+                    Delete
+                  </Button>
 
-      <Link className="btn btn-primary" to="/Inscription">
-        Ajouter un user
-      </Link>
-    </div>
+                  <Button onClick={() => userRole(user)}>Role Admin</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+
+        <Link className="btn btn-outline-primary" to="/Inscription">
+          Ajouter un utilisateur
+        </Link>
+      </div>
+    </main>
   );
 };
 

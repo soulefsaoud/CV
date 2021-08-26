@@ -28,8 +28,13 @@ const ConnexionPagee = ({ setLoggedUser }) => {
       (u) => u.email === user.email && u.password === user.password
     );
     if (exist) {
-      console.log(exist);
-      setLoggedUser({ ...user, isAuthenticated: true });
+      console.log(exist.firstname);
+      setLoggedUser({
+        ...user,
+        isAuthenticated: true,
+        firstname: exist.firstname,
+        isadmin: exist.role,
+      });
       history.push("/");
     } else {
       setLoggedUser(null);
@@ -61,9 +66,7 @@ const ConnexionPagee = ({ setLoggedUser }) => {
       </Form>
       {error && <p className={"text-danger"}>{error}</p>}
 
-      <div className="reseauSociauxCnx">
-        <ReseauSociauxPage />
-      </div>
+      <div className="reseauSociauxCnx">{/* <ReseauSociauxPage /> */}</div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const HomePage = ({ user }) => {
     <div className="container mt-5">
       <h1 className="text-center">
         {user && user.isAuthenticated
-          ? "Bonjour " + user.email
+          ? "Bonjour " + user.firstname
           : "Vous n'êtes pas identifié"}
       </h1>
       <Figure>

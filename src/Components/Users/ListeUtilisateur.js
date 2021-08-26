@@ -43,6 +43,7 @@ const UserList = () => {
               <th>Prénom</th>
               <th>Numero de telephone</th>
               <th>Rôle</th>
+              <th>Entreprise</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -57,6 +58,7 @@ const UserList = () => {
                 <td>{user.email}</td>
                 <td>{user.tel}</td>
                 <td>{user.role}</td>
+                <td></td>
                 <td>
                   <Button variant="danger" onClick={() => deleteUser(user.id)}>
                     Delete

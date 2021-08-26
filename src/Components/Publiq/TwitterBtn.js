@@ -8,8 +8,8 @@ const TwitterBtn = () => {
   return (
     <TwitterLogin
       authCallback={authHandler}
-      consumerKey="PyHxgJuyORZqhDiuKAne8LcxT"
-      consumerSecret="RBqOgWJfflgk2GLGmKtHFnHituqvf3vROPfAqzOPpfKficIrI9"
+      consumerKey="OSoLPLGBsY5zd92YHJcGQAa8P"
+      consumerSecret="3u7yoVoaTqPt7dyfhkzJA0jtahljiwI39tZ5ayKZPqHxgA1piz"
     />
   );
 };

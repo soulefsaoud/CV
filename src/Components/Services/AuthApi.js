@@ -3,29 +3,31 @@ import jwtDecode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
 import { getItem, addItem, removeItem } from "./LocalStorage";
 
-export function hasAuthenticated() {
-  const token = getItem("Token");
-  const result = token ? tokenIsValid(token) : false;
+// export function hasAuthenticated() {
+//   const token = getItem("Token");
+//   const result = token ? tokenIsValid(token) : false;
 
-  if (false === result) {
-    removeItem("Token");
-  }
+//   if (false === result) {
+//     removeItem("Token");
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 export function logout() {
   removeItem("loggedUser");
 
-  window.location.reload();
+  /* <Redirect to="/somewhere/else" />; */
+
+  // window.location.reload();
 }
 
-function tokenIsValid(token) {
-  const { exp: expiration } = jwtDecode(token);
+// function tokenIsValid(token) {
+//   const { exp: expiration } = jwtDecode(token);
 
-  if (expiration * 1000 > new Date().getTime()) {
-    return true;
-  }
+//   if (expiration * 1000 > new Date().getTime()) {
+//     return true;
+//   }
 
-  return false;
-}
+//   return false;
+// }

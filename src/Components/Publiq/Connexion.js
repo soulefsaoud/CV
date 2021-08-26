@@ -13,6 +13,7 @@ const ConnexionPagee = ({ setLoggedUser }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
+    entreprise: "",
   });
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
@@ -23,17 +24,19 @@ const ConnexionPagee = ({ setLoggedUser }) => {
   // PROPOSITION DE JULIEN
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log();
+
     const { data } = await axios.get("http://localhost:3060/users");
     const exist = data.find(
       (u) => u.email === user.email && u.password === user.password
     );
     if (exist) {
-      console.log(exist.firstname);
+      console.log(exist);
       setLoggedUser({
         ...user,
         isAuthenticated: true,
         firstname: exist.firstname,
-        isadmin: exist.role,
+        role: exist.role,
       });
       history.push("/");
     } else {
@@ -58,6 +61,14 @@ const ConnexionPagee = ({ setLoggedUser }) => {
             onChange={handleChange}
           />
         </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Entreprise</Form.Label>
+          <Form.Check
+            type="checkbox"
+            name={"entreprise"}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
         <Button variant="primary" type="submit">
           Envoyer
@@ -66,7 +77,9 @@ const ConnexionPagee = ({ setLoggedUser }) => {
       </Form>
       {error && <p className={"text-danger"}>{error}</p>}
 
-      <div className="reseauSociauxCnx">{/* <ReseauSociauxPage /> */}</div>
+      <div className="reseauSociauxCnx">
+        <ReseauSociauxPage />
+      </div>
     </div>
   );
 };

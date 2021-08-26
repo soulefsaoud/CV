@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import validate from "./validateMailAdress";
 import axios from "axios";
 
-const ValidationEmailPage = () => {
+const ValidationEmailPage = ({ user }) => {
   const history = useHistory();
   const [users, setUsers] = useState([]);
 
@@ -49,43 +49,56 @@ const ValidationEmailPage = () => {
 
   return (
     <div className={"container mt-5"}>
-      <Form onSubmit={formik.handleSubmit}>
-        <h4>Valider Votre adresse E-mail</h4>
+      {user && !user.isAuthenticated ? (
+        <>
+          {" "}
+          <Form onSubmit={formik.handleSubmit}>
+            <h4>Valider Votre adresse E-mail</h4>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name={"email"}
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          <Form.Text className="text-danger">
-            {formik.touched.email && formik.errors.email && formik.errors.email}
-          </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name={"email"}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <Form.Text className="text-danger">
+                {formik.touched.email &&
+                  formik.errors.email &&
+                  formik.errors.email}
+              </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>
-            Entrer le Token qui vous a été envoyé par mail{" "}
-          </Form.Label>
-          <Form.Control
-            type="text"
-            name={"token"}
-            value={formik.values.token}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          <Form.Text className="text-danger">
-            {formik.touched.token && formik.errors.token && formik.errors.token}
-          </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>
+                Entrer le Token qui vous a été envoyé par mail{" "}
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name={"token"}
+                value={formik.values.token}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <Form.Text className="text-danger">
+                {formik.touched.token &&
+                  formik.errors.token &&
+                  formik.errors.token}
+              </Form.Text>
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Envoyer
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Envoyer
+            </Button>
+          </Form>
+        </>
+      ) : (
+        <h1 className="text-center">
+          Vous n'êtes pas identifié pour cette page
+        </h1>
+      )}
     </div>
   );
 };

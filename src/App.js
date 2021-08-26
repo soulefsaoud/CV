@@ -15,7 +15,6 @@ import ListeCv from "./Components/Users/ListeCv";
 import FooterPage from "./Components/Shared/Footer";
 import ProfilPage from "./Components/Users/Profil";
 import ProfilEntreprisePage from "./Components/Entreprise/ProfilEntreprise";
-import AuthenticatedRoute from "./Components/Contexts/AuthenticatedRoute";
 
 import NavPage from "./Components/Shared/Navbar";
 import MentionsLegalesPage from "./Components/Publiq/MentionsLegales";
@@ -39,38 +38,51 @@ function App() {
           <Route exact path="/">
             <Homepage user={loggedUser} />
           </Route>
-
-          <Route exact path="/MonProfilCv" component={ProfilPage} />
-          <Route
-            exact
-            path="/ProfilDetailsPage"
-            component={ProfilDetailsPage}
-          />
-          <Route
-            exact
-            path="/ProfilEntreprise"
-            component={ProfilEntreprisePage}
-          />
-          <Route exact path="/ListUser" component={UserList} />
-          <Route exact path="/Inscription" component={InscriptionPage} />
-          <Route exact path="/Connexion">
-            <ConnexionPage setLoggedUser={setLoggedUser} />
+          <Route exact path="/MonProfilCv">
+            <ProfilPage user={loggedUser} />
           </Route>
-          <Route exact path="/RechercherCv" component={RechercheCvPage} />
-          <Route exact path="/Validation" component={ValidationEmailPage} />
-          <Route exact path="/Validationpass" component={ValiderPassPage} />
-          <Route exact path="/ListeCv" component={ListeCv} />
-          <Route exact path="/RechercheCV" component={RechercheCvPage} />
+          <Route exact path="/ProfilDetailsPage">
+            <ProfilDetailsPage user={loggedUser} />
+          </Route>{" "}
+          <Route exact path="/Connexion">
+            <ConnexionPage setLoggedUser={setLoggedUser} user={loggedUser} />
+          </Route>
+          <Route exact path="/ProfilEntreprise">
+            <ProfilEntreprisePage user={loggedUser} />
+          </Route>
+          <Route exact path="/ListUser">
+            <UserList user={loggedUser} />
+          </Route>
+          <Route exact path="/ListeCv">
+            <ListeCv user={loggedUser} />
+          </Route>
+          <Route exact path="/Inscription">
+            <InscriptionPage setLoggedUser={setLoggedUser} user={loggedUser} />
+          </Route>
+          <Route exact path="/RechercherCv">
+            <RechercheCvPage user={loggedUser} />
+          </Route>
+          <Route exact path="/ValidationEmail">
+            <ValidationEmailPage user={loggedUser} />
+          </Route>
+          <Route exact path="/Validationpass">
+            <ValiderPassPage user={loggedUser} />
+          </Route>
+          <Route exact path="/RechercheCV">
+            <RechercheCvPage user={loggedUser} />
+          </Route>
+          <Route exact path="/PresentationCV">
+            <PresentationCvpage user={loggedUser} />
+          </Route>
+          <Route exact path="/CvPhiliance">
+            <CvPhiliancePage />
+          </Route>
           <Route
             exact
             path="/MentionsLegalesPage"
             component={MentionsLegalesPage}
           />
           <Route exact path="/ContactPage" component={ContactPage} />
-          <AuthenticatedRoute path="/MonProfilCv" component={ProfilPage} />
-
-          <Route exact path="/PresentationCV" component={PresentationCvpage} />
-          <Route exact path="/CvPhiliance" component={CvPhiliancePage} />
         </Switch>
         <FooterPage />
       </div>

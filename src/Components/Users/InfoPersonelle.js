@@ -5,12 +5,12 @@ const InfoPersoPage = () => {
   return (
     <div className="div1">
       <div>
-        <Link variant="dark" to="/CvPhiliance">
+        <Link className="btn btn-outline-dark" to="/CvPhiliance">
           Voir mon CV
         </Link>
       </div>
-      <div className="text-center">
-        <Link variant="secondary" to="/ProfilDetailsPage">
+      <div className="text-center mb-4">
+        <Link className="btn btn-secondary" to="/ProfilDetailsPage">
           Mon experience profetionnelle
         </Link>
       </div>

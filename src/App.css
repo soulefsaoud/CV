@@ -227,6 +227,20 @@ span {
   background-color: violet !important;
   color: white !important;
 } */
+.philiance {
+  max-width: 80%;
+}
+.carousel.slide.carousel {
+  width: 150px !important;
+  height: 50px !important;
+}
+
+.carousel-indicators,
+.carousel-control-prev,
+.carousel-control-next {
+  background: red;
+  display: none !important;
+}
 
 @media screen and (max-width: 500px) {
   .divHautCVphiliance h5 {

@@ -1,0 +1,48 @@
+  <Switch>
+          {user && user.isAuthenticated ? (
+            <>
+              <Route exact path="/">
+                <Homepage user={loggedUser} />
+              </Route>
+              <Route exact path="/MonProfilCv" component={ProfilPage} />
+              <Route
+                exact
+                path="/ProfilDetailsPage"
+                component={ProfilDetailsPage}
+              />
+              <Route
+                exact
+                path="/ProfilEntreprise"
+                component={ProfilEntreprisePage}
+              />
+              <Route exact path="/ListUser" component={UserList} />
+              <Route exact path="/RechercherCv" component={RechercheCvPage} />
+              <Route exact path="/ListeCv" component={ListeCv} />
+              <Route exact path="/RechercheCV" component={RechercheCvPage} />
+              <Route
+                exact
+                path="/PresentationCV"
+                component={PresentationCvpage}
+              />
+              <Route exact path="/CvPhiliance" component={CvPhiliancePage} />
+            </>
+          ) : (
+            <>
+              <Route exact path="/">
+                <Homepage user={loggedUser} />
+              </Route>
+              <Route exact path="/Inscription" component={InscriptionPage} />
+              <Route exact path="/Connexion" component={ConnexionPage} />
+
+              <Route exact path="/Validation" component={ValidationEmailPage} />
+              <Route exact path="/Validationpass" component={ValiderPassPage} />
+            </>
+          )}
+
+          <Route
+            exact
+            path="/MentionsLegalesPage"
+            component={MentionsLegalesPage}
+          />
+          <Route exact path="/ContactPage" component={ContactPage} />
+        </Switch>

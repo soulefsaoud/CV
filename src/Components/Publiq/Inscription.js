@@ -27,27 +27,27 @@ const InscriptionPage = ({ user }) => {
       auth: false,
     },
 
-    //validate,
+    validate,
     onSubmit: async (values) => {
       console.log(entreprise);
 
       await registerUser({ ...values, entreprise: entreprise });
       history.push("/ValidationEmail");
-      // emailjs
-      //   .send(
-      //     "service_1jltkkf",
-      //     "template_nud6fnp",
-      //     values,
-      //     "user_1w1n0wpwkgE46Lpbb7FBu"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       console.log(result.text);
-      //     },
-      //     (error) => {
-      //       console.log(error.text);
-      //     }
-      //   );
+      emailjs
+        .send(
+          "service_1jltkkf",
+          "template_nud6fnp",
+          values,
+          "user_1w1n0wpwkgE46Lpbb7FBu"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     },
   });
 

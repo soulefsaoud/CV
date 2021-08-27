@@ -1,8 +1,14 @@
 import React from "react";
+import { useStorageState } from "react-storage-hooks";
 import { Form, Button, Row, Col, FormControl, Card } from "react-bootstrap";
 import CvPhiliancePage from "./CvPhiliance";
 
 const PresentationCvpage = ({ user }) => {
+  const [loggedUser, setLoggedUser] = useStorageState(
+    localStorage,
+    "loggedUser",
+    null
+  );
   return (
     <main className="main">
       <h1 className="text-center">
@@ -29,7 +35,7 @@ const PresentationCvpage = ({ user }) => {
             </div>
             <Row className="sectionPresentationCV ">
               <Col className="cvPhiliance" md={6}>
-                <CvPhiliancePage />
+                <CvPhiliancePage user={loggedUser} />
               </Col>
 
               <Col className=" cvPhiliance" md={6}>

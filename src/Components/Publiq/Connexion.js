@@ -1,19 +1,20 @@
 import { Button, Form } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
+import validate from "./validation";
 
 const ConnexionPagee = ({ setLoggedUser }) => {
   const history = useHistory();
-
+  const [checked, setChecked] = useState({});
   const [error, setError] = useState("");
 
   const [user, setUser] = useState({
     email: "",
     password: "",
-    entreprise: "",
+    auth: true,
   });
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
@@ -28,7 +29,10 @@ const ConnexionPagee = ({ setLoggedUser }) => {
 
     const { data } = await axios.get("http://localhost:3060/users");
     const exist = data.find(
-      (u) => u.email === user.email && u.password === user.password
+      (u) =>
+        u.email === user.email &&
+        u.password === user.password &&
+        u.auth === user.auth
     );
     if (exist) {
       console.log(exist);
@@ -37,6 +41,7 @@ const ConnexionPagee = ({ setLoggedUser }) => {
         isAuthenticated: true,
         firstname: exist.firstname,
         role: exist.role,
+        entreprise: exist.entreprise,
       });
       history.push("/");
     } else {
@@ -58,14 +63,6 @@ const ConnexionPagee = ({ setLoggedUser }) => {
           <Form.Control
             type="password"
             name={"password"}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Entreprise</Form.Label>
-          <Form.Check
-            type="checkbox"
-            name={"entreprise"}
             onChange={handleChange}
           />
         </Form.Group>

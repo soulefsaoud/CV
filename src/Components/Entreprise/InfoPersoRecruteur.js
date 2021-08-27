@@ -5,16 +5,6 @@ import { Link } from "react-router-dom";
 const InfoPersoRecruteurPage = () => {
   return (
     <div className="div1">
-      <div>
-        <Button variant="dark" type="submit">
-          Informations
-        </Button>
-      </div>
-      <div className="text-center">
-        <Button variant="secondary" type="submit">
-          voir mon profil
-        </Button>
-      </div>
       <h3>Mes informations personnelles</h3>
 
       <div>

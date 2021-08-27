@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const InfoPersoPage = () => {
+const InfoPersoPage = ({ user }) => {
   return (
     <div className="div1">
       <div>
@@ -15,7 +15,6 @@ const InfoPersoPage = () => {
         </Link>
       </div>
       <h3>Mes informations personnelles</h3>
-
       <div>
         <Form>
           <Row>

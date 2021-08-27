@@ -5,16 +5,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
-// import validate from "./validation";
+import validate from "./validation";
 
 const InscriptionPage = ({ user }) => {
   const history = useHistory();
   const [users, setUsers] = useState([]);
+  const [entreprise, setEntreprise] = useState("");
+
   const formik = useFormik({
     initialValues: {
       id: "",
       token: uuidv4(),
-
       email: "",
       firstname: "",
       lastname: "",
@@ -23,28 +24,30 @@ const InscriptionPage = ({ user }) => {
       password: "",
       confirm: "",
       entreprise: "",
-
       auth: false,
     },
+
     //validate,
     onSubmit: async (values) => {
-      await registerUser(values);
+      console.log(entreprise);
+
+      await registerUser({ ...values, entreprise: entreprise });
       history.push("/ValidationEmail");
-      emailjs
-        .send(
-          "service_geg1l24",
-          "template_nud6fnp",
-          values,
-          "user_1w1n0wpwkgE46Lpbb7FBu"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      // emailjs
+      //   .send(
+      //     "service_1jltkkf",
+      //     "template_nud6fnp",
+      //     values,
+      //     "user_1w1n0wpwkgE46Lpbb7FBu"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       console.log(result.text);
+      //     },
+      //     (error) => {
+      //       console.log(error.text);
+      //     }
+      //   );
     },
   });
 
@@ -164,15 +167,15 @@ const InscriptionPage = ({ user }) => {
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Entreprise</Form.Label>
-            <Form.Check
-              type="checkbox"
-              checked
+            <select
               name={"entreprise"}
-              value={formik.values.entreprise}
-              onChange={formik.handleChange}
+              onChange={(e) => setEntreprise(e.target.value)}
               onBlur={formik.handleBlur}
-            />
+            >
+              <option label="Entreprise" />
+              <option value="oui" label="Oui" />
+              <option value="non" label="Non" />
+            </select>
           </Form.Group>
 
           <Button variant="primary" type="submit">

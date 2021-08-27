@@ -187,48 +187,57 @@ span {
 .profil {
   width: 50% !important;
 }
+
 .philiance {
   font-size: 20px;
   font-weight: bold;
   color: rgb(255, 115, 0);
+  max-width: 80%;
 }
 
 .reseauSociauxCnx {
-  width: 50%;
+  border-radius: 10px;
+  width: 25%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .sociauxbtn {
   background-color: red;
 }
 
+.google {
+  padding-top: 15px !important;
+}
+
 .twitter,
 .facebook,
 .github {
-  padding: 15px;
-}
-
-.google button,
-.github button,
-.faccebook {
-  width: 50%;
-  border: 5px solid green !important;
-  border-radius: 50px !important;
+  padding-bottom: 15px !important;
+  padding-top: 15px !important;
 }
 
 .kep-login-facebook {
-  font-size: 16px !important;
-  border-radius: 50px !important;
+  width: 98%;
+  font-size: 12px !important;
+  border-radius: 30px !important;
 }
 
-/* .git {
+.git {
   width: 100%;
   background-color: violet !important;
   color: white !important;
-} */
-.philiance {
-  max-width: 80%;
+  border-radius: 30px;
+}
+
+.google {
+  width: 98% !important;
+}
+
+.google button {
+  width: 100% !important;
+  border-radius: 20px !important;
 }
 .carousel.slide.carousel {
   width: 150px !important;

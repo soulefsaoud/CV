@@ -7,6 +7,7 @@ const onFailure = (response) => console.error(response);
 const GithubBtn = () => {
   return (
     <LoginGithub
+      className="git"
       clientId="Iv1.50ab24b69e54c045"
       onSuccess={onSuccess}
       onFailure={onFailure}

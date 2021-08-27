@@ -75,7 +75,7 @@ function App() {
             <PresentationCvpage user={loggedUser} />
           </Route>
           <Route exact path="/CvPhiliance">
-            <CvPhiliancePage />
+            <CvPhiliancePage user={loggedUser} />
           </Route>
           <Route
             exact

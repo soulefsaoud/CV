@@ -36,12 +36,10 @@ const ProfilEntreprisePage = ({ user }) => {
             </div>
             <div id="profilDiv2">
               <h4 className="text-center">Réseaux sociaux</h4>
-              <p>
-                Reliez votre compte à un réseau social pour l'utiliser comme
-                moyen de connexion
-              </p>
 
-              <ReseauSociauxPage />
+              <div className="reseauSociauxCnx">
+                <ReseauSociauxPage />
+              </div>
             </div>
           </section>
         </>

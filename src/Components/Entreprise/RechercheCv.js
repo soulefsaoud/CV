@@ -9,6 +9,7 @@ import {
   Card,
   CardGroup,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const RechercheCvPage = ({ user }) => {
   const [date, setDate] = useState(new Date());
@@ -195,9 +196,12 @@ const RechercheCvPage = ({ user }) => {
                   <Card.Text>Lorem</Card.Text>
                   <Card.Title>PRENOM :</Card.Title>
                   <Card.Text>Lorem</Card.Text>
-                  <Button variant="outline-success" href="/PresentationCv">
+                  <Link
+                    className="btn btn-outline-success"
+                    to="/PresentationCV"
+                  >
                     Voir Détails
-                  </Button>
+                  </Link>
                 </Card.Body>
               </Card>
               <Card className="m-4 border border-success rounded">
@@ -212,9 +216,12 @@ const RechercheCvPage = ({ user }) => {
                   <Card.Text>Lorem</Card.Text>
                   <Card.Title>PRENOM :</Card.Title>
                   <Card.Text>Lorem</Card.Text>
-                  <Button variant="outline-success" href="/PresentationCv">
+                  <Link
+                    className="btn btn-outline-success"
+                    to="/PresentationCV"
+                  >
                     Voir Détails
-                  </Button>
+                  </Link>
                 </Card.Body>
               </Card>
               <Card className="m-4 border border-success rounded">
@@ -229,9 +236,12 @@ const RechercheCvPage = ({ user }) => {
                   <Card.Text>Lorem</Card.Text>
                   <Card.Title>PRENOM :</Card.Title>
                   <Card.Text>Lorem</Card.Text>
-                  <Button variant="outline-success" href="/PresentationCv">
+                  <Link
+                    className="btn btn-outline-success"
+                    to="/PresentationCV"
+                  >
                     Voir Détails
-                  </Button>
+                  </Link>
                 </Card.Body>
               </Card>
             </CardGroup>

@@ -55,14 +55,6 @@ const NavPage = ({ user }) => {
                   <ul className="navbar-nav mr-auto">
                     {user && user.role !== "admin" ? (
                       <>
-                        <li className="nav-item">
-                          <NavLink className="nav-link" to="/MonProfilCv">
-                            Profil Condidat
-                          </NavLink>
-                        </li>
-                      </>
-                    ) : (
-                      <>
                         {user && user.entreprise === "oui" ? (
                           <>
                             <li className="nav-item">
@@ -81,32 +73,38 @@ const NavPage = ({ user }) => {
                           </>
                         ) : (
                           <>
+                            {" "}
                             <li className="nav-item">
-                              <NavLink
-                                className="nav-link"
-                                to="/PresentationCV"
-                              >
-                                CV Philiance
-                              </NavLink>
-                            </li>
-                            <li className="nav-item">
-                              <NavLink className="nav-link" to="/RechercherCv">
-                                Rechercher un CV
-                              </NavLink>
-                            </li>
-
-                            <li className="nav-item">
-                              <NavLink className="nav-link" to="/ListeCv">
-                                Liste CV
-                              </NavLink>
-                            </li>
-                            <li className="nav-item">
-                              <NavLink className="nav-link" to="/ListUser">
-                                Liste utilisateur
+                              <NavLink className="nav-link" to="/MonProfilCv">
+                                Profil Condidat
                               </NavLink>
                             </li>
                           </>
                         )}
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-item">
+                          <NavLink className="nav-link" to="/PresentationCV">
+                            CV Philiance
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink className="nav-link" to="/RechercherCv">
+                            Rechercher un CV
+                          </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                          <NavLink className="nav-link" to="/ListeCv">
+                            Liste CV
+                          </NavLink>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink className="nav-link" to="/ListUser">
+                            Liste utilisateur
+                          </NavLink>
+                        </li>
                       </>
                     )}
                   </ul>

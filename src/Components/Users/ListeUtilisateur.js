@@ -60,7 +60,7 @@ const UserList = ({ user }) => {
                     <td>{user.email}</td>
                     <td>{user.tel}</td>
                     <td>{user.role}</td>
-                    <td></td>
+                    <td>{user.entreprise}</td>
                     <td>
                       <Button
                         variant="danger"

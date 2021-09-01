@@ -48,58 +48,58 @@ const ValiderPassPage = ({ user }) => {
 
   return (
     <div className=" container divValidation">
-      <h1 className="text-center">
-        {user && !user.isAuthenticated ? (
-          <>
-            <div className="text-center mb-3">
-              <h3>Mot de passe oublié</h3>
-            </div>
-            <div className="divForm">
-              <Form onSubmit={formik.handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    name={"email"}
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                  <Form.Text className="text-danger">
-                    {formik.touched.email &&
-                      formik.errors.email &&
-                      formik.errors.email}
-                  </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Nouveau mot de passe</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name={"password"}
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                  />
-                  <Form.Text className="text-danger">
-                    {formik.touched.password &&
-                      formik.errors.password &&
-                      formik.errors.password}
-                  </Form.Text>
-                </Form.Group>
-
-                <Button variant="success" type="submit">
-                  Valider
-                </Button>
-              </Form>
-            </div>
-          </>
-        ) : (
+      {user && user.isAuthenticated ? (
+        <>
           <h1 className="text-center">
             {" "}
             Vous n'êtes pas identifié pour cette page
           </h1>
-        )}
-      </h1>
+        </>
+      ) : (
+        <>
+          <div className="text-center mb-3">
+            <h3>Mot de passe oublié</h3>
+          </div>
+          <div className="divForm">
+            <Form onSubmit={formik.handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name={"email"}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <Form.Text className="text-danger">
+                  {formik.touched.email &&
+                    formik.errors.email &&
+                    formik.errors.email}
+                </Form.Text>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Nouveau mot de passe</Form.Label>
+                <Form.Control
+                  type="password"
+                  name={"password"}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <Form.Text className="text-danger">
+                  {formik.touched.password &&
+                    formik.errors.password &&
+                    formik.errors.password}
+                </Form.Text>
+              </Form.Group>
+
+              <Button variant="success" type="submit">
+                Valider
+              </Button>
+            </Form>
+          </div>
+        </>
+      )}
     </div>
   );
 };

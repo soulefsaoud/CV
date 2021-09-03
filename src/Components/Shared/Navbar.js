@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { Figure, Navbar, Image, Nav } from "react-bootstrap";
-import Auth from "../Contexts/Auth";
+import React from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import { logout } from "../Services/AuthApi";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import {} from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 
 const NavPage = ({ user }) => {
-  // const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
   let history = useHistory();
   const handleLogout = () => {
     logout();

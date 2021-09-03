@@ -1,10 +1,9 @@
 import React from "react";
 import { Button, Row, Col, Card } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
 
 const CvPhiliancePage = ({ user }) => {
   return (
-    <div className="container">
+    <div className="container  ">
       {user && user.isAuthenticated ? (
         <>
           {" "}

@@ -33,21 +33,21 @@ const InscriptionPage = ({ user }) => {
 
       await registerUser({ ...values, entreprise: entreprise });
       history.push("/ValidationEmail");
-      // emailjs
-      //   .send(
-      //     "serdfgfghfghm",
-      //     "templdfgfdg3fx",
-      //     values,
-      //     "user_w1pkodammesdfdfgfdgEeOp"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       console.log(result.text);
-      //     },
-      //     (error) => {
-      //       console.log(error.text);
-      //     }
-      //   );
+      emailjs
+        .send(
+          "service_vz1ldxm",
+          "template_ctgd3fx",
+          values,
+          "user_w1pkodammeZXWIrDsEeOp"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     },
   });
 

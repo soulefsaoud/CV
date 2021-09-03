@@ -33,7 +33,7 @@ const ValidationEmailPage = ({ user }) => {
       if (k === 1) {
         console.log("supper");
 
-        history.push("/");
+        history.push("/Connexion");
       } else {
         alert("token ou email invalide");
         console.log("erreur");

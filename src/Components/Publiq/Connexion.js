@@ -1,14 +1,13 @@
 import { Button, Form } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
-import validate from "./validation";
+// import validate from "./validation";
 
 const ConnexionPagee = ({ setLoggedUser }) => {
   const history = useHistory();
-  const [checked, setChecked] = useState({});
   const [error, setError] = useState("");
 
   const [user, setUser] = useState({
@@ -22,7 +21,6 @@ const ConnexionPagee = ({ setLoggedUser }) => {
     setUser({ ...user, [name]: value });
   };
 
-  // PROPOSITION DE JULIEN
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log();

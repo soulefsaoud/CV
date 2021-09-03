@@ -1,6 +1,5 @@
 import React from "react";
-import { Figure, Navbar, Image, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Figure } from "react-bootstrap";
 
 const HomePage = ({ user }) => {
   return (

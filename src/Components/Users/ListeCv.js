@@ -1,13 +1,11 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Fragment, useState } from "react";
 import { Calendar } from "react-calendar";
-import { Form, Row, Col, FormControl, Card, CardGroup } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 
 const ListeCv = ({ user }) => {
-  const [users, setUsers] = useState([]);
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 

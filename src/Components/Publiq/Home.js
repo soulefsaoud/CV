@@ -2,11 +2,12 @@ import React from "react";
 import { Figure } from "react-bootstrap";
 
 const HomePage = ({ user }) => {
+  console.log(user);
   return (
     <div className="container mt-5">
       <h1 className="text-center">
         {user && user.isAuthenticated
-          ? "Bonjour " + user.firstname
+          ? "Bonjour " + user.username
           : "Vous n'êtes pas identifié"}
       </h1>
       <Figure>

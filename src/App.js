@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStorageState } from "react-storage-hooks";
+import jwt_decode from "jwt-decode";
 import "./App.css";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
@@ -29,6 +30,12 @@ function App() {
     null
   );
 
+  const [decodeUser, setDecodeUser] = useState(
+    loggedUser
+      ? { isAuthenticated: true, ...jwt_decode(loggedUser.token.split(" ")[1]) }
+      : null
+  );
+
   return (
     <HashRouter>
       <div className="container-fluid">
@@ -36,7 +43,7 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <Homepage user={loggedUser} />
+            <Homepage user={decodeUser} />
           </Route>
           <Route exact path="/MonProfilCv">
             <ProfilPage user={loggedUser} />

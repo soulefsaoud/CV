@@ -23,28 +23,21 @@ const ConnexionPagee = ({ setLoggedUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log();
 
-    const { data } = await axios.get("http://localhost:3060/users");
-    const exist = data.find(
-      (u) =>
-        u.email === user.email &&
-        u.password === user.password &&
-        u.auth === user.auth
-    );
-    if (exist) {
-      console.log(exist);
+    try {
+      const { data } = await axios.post("/api/login", {
+        email: user.email,
+        password: user.password,
+      });
+      console.log(data);
       setLoggedUser({
-        ...user,
+        token: "Bearer " + data.token,
         isAuthenticated: true,
-        firstname: exist.firstname,
-        role: exist.role,
-        entreprise: exist.entreprise,
       });
       history.push("/");
-    } else {
+    } catch (err) {
       setLoggedUser(null);
-      setError("Identifiants incorrects");
+      console.error(err.message);
     }
   };
 

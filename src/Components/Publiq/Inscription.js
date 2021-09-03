@@ -35,10 +35,10 @@ const InscriptionPage = ({ user }) => {
       history.push("/ValidationEmail");
       emailjs
         .send(
-          "service_vz1ldxm",
-          "template_ctgd3fx",
+          "service_ffghfghfghfgm",
+          "template_gfhfghfghgfh3fx",
           values,
-          "user_w1pkodammeZXWIrDsEeOp"
+          "user_w1ghfhjfgjfgjfgjsEeOp"
         )
         .then(
           (result) => {

@@ -9,8 +9,7 @@ import ReseauSociauxPage from "./ReseauxSociaux";
 const ProfilPage = ({ user }) => {
   return (
     <main className="container main">
-      {user && user.isAuthenticated ? (
-        <>
+      <>
           {" "}
           <div>
             <Row className="d-flex align-items-center">
@@ -42,9 +41,6 @@ const ProfilPage = ({ user }) => {
             </div>
           </section>
         </>
-      ) : (
-        <h1>Vous n'êtes pas identifié pour cette page</h1>
-      )}
     </main>
   );
 };

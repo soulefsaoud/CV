@@ -5,16 +5,13 @@ import { Fragment, useState } from "react";
 import { Calendar } from "react-calendar";
 import { Form, Row, Col } from "react-bootstrap";
 
-const ListeCv = ({ user }) => {
+const ListeCv = () => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
   return (
     <main className="container main ">
-      {user && user.isAuthenticated ? (
-        <>
-          {" "}
-          <div className="text-center">
+       <div className="text-center">
             <div className="text-center bg-custom border border-primary rounded-pill mb-3">
               <h1>Liste des CV</h1>
             </div>
@@ -191,12 +188,6 @@ const ListeCv = ({ user }) => {
               </Link>
             </div>
           </div>
-        </>
-      ) : (
-        <h1 className="text-center">
-          Vous n'êtes pas identifié pour cette page
-        </h1>
-      )}
     </main>
   );
 };

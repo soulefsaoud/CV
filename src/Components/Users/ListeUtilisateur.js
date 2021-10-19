@@ -33,8 +33,7 @@ const UserList = ({ user }) => {
 
   return (
     <main className="container main w-50">
-      {user && user.isAuthenticated ? (
-        <>
+      <>
           <div className="text-center">
             <h1>Liste des utilisateurs</h1>
             <Table striped bordered hover size="sm">
@@ -81,11 +80,6 @@ const UserList = ({ user }) => {
             </Link>
           </div>
         </>
-      ) : (
-        <h1 className="text-center">
-          Vous n'êtes pas identifié pour cette page
-        </h1>
-      )}
     </main>
   );
 };

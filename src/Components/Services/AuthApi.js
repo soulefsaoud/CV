@@ -1,5 +1,5 @@
-import { removeItem } from "./LocalStorage";
+// import { removeItem } from "./LocalStorage";
 
-export function logout() {
-  removeItem("loggedUser");
-}
+// export function logout() {
+//   removeItem("loggedUser");
+// }

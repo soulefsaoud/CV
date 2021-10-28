@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import UserList from './Components/Users/ListeUtilisateur'
 import Homepage from './Components/Publiq/Home'
-import InscriptionPage from './Components/Publiq/Inscription'
+import Inscription from './Components/Publiq/Inscription'
 import ConnexionPage from './Components/Publiq/Connexion'
 import RechercheCvPage from './Components/Entreprise/RechercheCv'
 import ValidationEmailPage from './Components/Publiq/ValiderEmail'
@@ -23,17 +23,21 @@ import CvPhiliancePage from './Components/Entreprise/CvPhiliance'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import AddUserForm from "./Components/Users/add-user-form/AddUserForm";
+import AddEntrepriseForm from "./Components/Users/add-entreprise-form/AddEntrepriseForm";
 
 function App() {
   const[users, setUsers]= useState([])
+  const[loggedUser, setLoggedUser]= useState()
+
   useEffect(()=>{
     axios.get('http://localhost:3001/users').then(result=>setUsers(result.data))
   },[])
-  console.log(users)
-  // useEffect(()=>{
-  //   axios.get('http://localhost:3002/users').then(result=>setUsers(result.data))
-  // },[])
-  // console.log(users)
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/logged').then(result=>setLoggedUser(result.data))
+  },[])
+
   return (
     <BrowserRouter>
       <div className='container-fluid'>
@@ -50,13 +54,19 @@ function App() {
             <ProfilPage />
           </Route>
           <Route exact path='/ListUser'>
-            <UserList />
+            <UserList user={loggedUser} />
+          </Route>
+          <Route exact path='/add-user'>
+            <AddUserForm />
+          </Route>
+          <Route exact path='/add-entreprise'>
+            <AddEntrepriseForm />
           </Route>
           <Route exact path='/Connexion'>
             <ConnexionPage />
           </Route>
 
-          <Route exact path='/ProfilDetailsPage'>
+          <Route exact path='/ProfilDetailsPage/:id'>
             <ProfilDetailsPage />
           </Route>
           <Route exact path='/Connexion'>
@@ -67,7 +77,7 @@ function App() {
           </Route>
 
           <Route exact path='/Inscription'>
-            <InscriptionPage />
+            <Inscription />
           </Route>
           <Route exact path='/RechercherCv'>
             <RechercheCvPage />

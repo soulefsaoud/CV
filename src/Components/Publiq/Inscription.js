@@ -9,7 +9,7 @@ import validate from "./validation";
 import InfoPerso from "./InfoPerso";
 import { Link } from "react-router-dom";
 
-const InscriptionPage = ({ user }) => {
+const Inscription = ({ user }) => {
   const history = useHistory();
   const [users, setUsers] = useState([]);
   const [entreprise, setEntreprise] = useState("");
@@ -240,4 +240,4 @@ const InscriptionPage = ({ user }) => {
   );
 };
 
-export default InscriptionPage;
+export default Inscription;

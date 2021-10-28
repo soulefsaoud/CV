@@ -25,7 +25,7 @@ const ValiderPassPage = ({ user }) => {
           users[i].confirm = values.password;
           check = true;
           return axios
-            .put(`http://localhost:3060/users/${users[i].id}`, users[i])
+            .put(`http://localhost:3001/users/${users[i].id}`, users[i])
             .then((users) => {
               console.log(users);
               history.push("/Connexion");
@@ -42,7 +42,7 @@ const ValiderPassPage = ({ user }) => {
   });
   useEffect(() => {
     axios
-      .get("http://localhost:3060/users")
+      .get("http://localhost:3001/users")
       .then((result) => setUsers(result.data));
   }, []);
 
@@ -77,7 +77,7 @@ const ValiderPassPage = ({ user }) => {
                     formik.errors.email}
                 </Form.Text>
               </Form.Group>
-              <Form.Group className="mb-3">
+              {/* <Form.Group className="mb-3">
                 <Form.Label>Nouveau mot de passe</Form.Label>
                 <Form.Control
                   type="password"
@@ -91,7 +91,7 @@ const ValiderPassPage = ({ user }) => {
                     formik.errors.password &&
                     formik.errors.password}
                 </Form.Text>
-              </Form.Group>
+              </Form.Group> */}
 
               <Button variant="success" type="submit">
                 Valider

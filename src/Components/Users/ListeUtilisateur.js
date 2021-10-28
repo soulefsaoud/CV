@@ -7,14 +7,14 @@ const UserList = ({ user }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3060/users").then((response) => {
+    axios.get("http://localhost:3001/users").then((response) => {
       setUsers(response.data);
     });
   }, []);
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete("http://localhost:3060/users/" + id);
+      await axios.delete("http://localhost:3001/users/" + id);
       const newList = users.filter((user) => {
         return user.id !== id;
       });
@@ -27,7 +27,7 @@ const UserList = ({ user }) => {
     console.log(users);
     if (users.role === "user") {
       users.role = "admin";
-      axios.put(`http://localhost:3060/users/` + users.id, users);
+      axios.put(`http://localhost:3001/users/` + users.id, users);
     }
   };
 

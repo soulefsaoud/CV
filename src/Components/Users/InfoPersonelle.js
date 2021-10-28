@@ -1,17 +1,25 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+// import ProfilDetailsPage from "./ProfilDetailsPage";
+
+
+
 const InfoPersoPage = ({ user }) => {
+  
+
+
+  
   return (
     <div className="div1">
       <div>
-        <Link className="btn btn-outline-dark" to="/CvPhiliance">
+        <Link className="btn btn-outline-dark" to="/ProfilDetailsPage">
           Voir mon CV
-        </Link>
+          </Link>
       </div>
       <div className="text-center mb-4">
         <Link className="btn btn-secondary" to="/ProfilDetailsPage">
-          Mon experience profetionnelle
+          Mon experience professionnelle
         </Link>
       </div>
       <h3>Mes informations personnelles</h3>
@@ -25,7 +33,7 @@ const InfoPersoPage = ({ user }) => {
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                <Form.Control type="text" placeholder="Prenom" />
+                <Form.Control type="text" placeholder="Nom" />
               </Form.Group>
             </Col>
           </Row>

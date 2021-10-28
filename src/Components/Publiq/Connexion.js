@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import ReseauSociauxPage from "../Users/ReseauxSociaux";
-// import validate from "./validation";
+//import validate from "./validation";
 
 const ConnexionPagee = ({ setLoggedUser }) => {
   const history = useHistory();
@@ -57,17 +57,49 @@ const ConnexionPagee = ({ setLoggedUser }) => {
             onChange={handleChange}
           />
         </Form.Group>
+     
+        <Form.Group className="position-relative mb-3">
+        <div class="col">
+
+            <Form.Check
+              required
+              name="terms"
+              label="Se souvenir de moi"
+              onChange={handleChange}
+              isInvalid={!!error.terms}
+              feedback={error.terms}
+              feedbackType="invalid"
+              id="validationFormik106"
+              feedbackTooltip
+             />
+
+           <div className="mb-3">
+             <div className="MotDepasseOublie">
+            <div className=""><Link to="/ValidationPass">Mot de passe oublié?</Link></div>
+            </div>
+            </div>
+       
+       </div>
+          </Form.Group>
+          
+          
+          
+
 
         <Button variant="primary" type="submit">
           Envoyer
         </Button>
-        <Link to="/ValidationPass">Mot de passe oublié?</Link>
+      
+        <div className=""><Link to="/Home">envoyer</Link></div>
+
       </Form>
       {error && <p className={"text-danger"}>{error}</p>}
 
       <div className="reseauSociauxCnx">
         <ReseauSociauxPage />
       </div>
+
+      
     </div>
   );
 };

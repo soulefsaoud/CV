@@ -18,7 +18,7 @@ const ValidationEmailPage = () => {
     },
     validate,
     onSubmit: async (values) => {
-      console.log(formik.value.au);
+      console.log(formik.values.au);
       let k = 0;
 
       for (let i = 0; i < users.length; i++) {
@@ -29,7 +29,7 @@ const ValidationEmailPage = () => {
           k = k + 1;
           users[i].auth = true;
           axios
-            .put(`http://localhost:3060/users/${users[i].id}`)
+            .put(`http://localhost:3001/users/${users[i].id}`)
             .then((users) => {
               console.log(users);
             })
@@ -50,7 +50,7 @@ const ValidationEmailPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3060/users")
+      .get("http://localhost:3001/users")
       .then((result) => setUsers(result.data));
   }, []);
 

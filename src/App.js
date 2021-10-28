@@ -13,14 +13,27 @@ import ListeCv from './Components/Users/ListeCv'
 import FooterPage from './Components/Shared/Footer'
 import ProfilPage from './Components/Users/Profil'
 import ProfilEntreprisePage from './Components/Entreprise/ProfilEntreprise'
+import InfoPersoPage from './Components/Publiq/InfoPerso'
 
 import NavPage from './Components/Shared/Navbar'
 import MentionsLegalesPage from './Components/Publiq/MentionsLegales'
 import ContactPage from './Components/Users/ContactPhilianace'
 import ProfilDetailsPage from './Components/Users/ProfilDetails'
 import CvPhiliancePage from './Components/Entreprise/CvPhiliance'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
+  const[users, setUsers]= useState([])
+  useEffect(()=>{
+    axios.get('http://localhost:3001/users').then(result=>setUsers(result.data))
+  },[])
+  console.log(users)
+  // useEffect(()=>{
+  //   axios.get('http://localhost:3002/users').then(result=>setUsers(result.data))
+  // },[])
+  // console.log(users)
   return (
     <BrowserRouter>
       <div className='container-fluid'>
@@ -73,6 +86,9 @@ function App() {
           </Route>
           <Route exact path='/CvPhiliance'>
             <CvPhiliancePage />
+          </Route>
+          <Route exact path='/InfoPerso'>
+            <InfoPersoPage />
           </Route>
           <Route
             exact

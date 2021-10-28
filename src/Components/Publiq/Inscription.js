@@ -6,6 +6,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
 import validate from "./validation";
+import InfoPerso from "./InfoPerso";
+import { Link } from "react-router-dom";
 
 const InscriptionPage = ({ user }) => {
   const history = useHistory();
@@ -53,7 +55,7 @@ const InscriptionPage = ({ user }) => {
 
   const registerUser = async (user) => {
     try {
-      await axios.post("http://localhost:3060/users", user);
+      await axios.post("http://localhost:3001/users", user);
     } catch (error) {
       console.error(error);
     }
@@ -61,7 +63,7 @@ const InscriptionPage = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3060/users")
+      .get("http://localhost:3001/users")
       .then((result) => setUsers(result.data));
   }, []);
 
@@ -77,11 +79,13 @@ const InscriptionPage = ({ user }) => {
           <Form.Group className="mb-3">
             <Form.Label>Prénom</Form.Label>
             <Form.Control
+      
               type="text"
               name={"firstname"}
               value={formik.values.firstname}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              onBlur={formik.handleBlur}  
+             
             />
             <Form.Text className="text-danger">
               {formik.touched.firstname &&
@@ -166,22 +170,71 @@ const InscriptionPage = ({ user }) => {
                 formik.errors.confirm}
             </Form.Text>
           </Form.Group>
-          <Form.Group className="mb-3">
-            <select
+          {/* <Form.Group className="mb-3">
+          <Form.Label> Entreprise </Form.Label>
+          <Form.Control
+           select
               name={"entreprise"}
               onChange={(e) => setEntreprise(e.target.value)}
               onBlur={formik.handleBlur}
-            >
-              <option label="Entreprise" />
-              <option value="oui" label="Oui" />
-              <option value="non" label="Non" />
-            </select>
-          </Form.Group>
+            
+              option value="oui" label="Oui" 
+              option value="non" label="Non" 
+        
+            />
+          </Form.Group> */}
 
-          <Button variant="primary" type="submit">
+         
+{/*     
+        //   as="select"
+        //   custom
+        //   onChange={(e) => setEntreprise(e.target.value)}
+        //   onBlur={formik.handleBlur}
+        // 
+   */}
+
+      {/* <Form.Group className="mb-3">
+      <Form.Control
+      as="select"
+      custom
+         
+              onChange={(e) => setEntreprise(e.target.value)}
+              onBlur={formik.handleBlur}
+            
+          option value="oui" label="OUI" 
+          option value="non" label="NON"
+          />
+      
+             
+        </Form.Group> */}
+  
+
+     <Form.Group className="mb-3">
+        <label>
+         <div className="mb-3"> Entreprise  </div>
+        
+          <select
+              name={"entreprise"}
+              onChange={(e) => setEntreprise(e.target.value)}
+              onBlur={formik.handleBlur}>
+            <option value="OUI">OUI</option>
+            <option value="NON">NON</option>
+           </select>
+        </label>
+        
+        </Form.Group> 
+ 
+
+
+         <Button variant="primary" type="submit">
             Envoyer
           </Button>
+          <InfoPerso/>
+          <Link to="chart" target="_blank" to="/InfoPerso" >Test</Link>
         </Form>
+
+       
+
       )}
     </div>
   );

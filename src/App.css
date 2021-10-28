@@ -218,6 +218,7 @@ span {
   padding-top: 15px !important;
 }
 
+
 .kep-login-facebook {
   width: 98%;
   font-size: 12px !important;
@@ -255,4 +256,44 @@ span {
   .divHautCVphiliance h5 {
     border: none;
   }
+}
+
+.MotDepasseOublie{
+    margin-top: -2%;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+
+  .Button{
+      position:absolute;
+      z-index: 20;
+
+  }
+  
+
+  .langue{
+    display: inline-flex;
+    align-items: center;
+    margin: -3px; 
+    margin-left: 35%;
+    
+  }
+  
+  .langage{
+    display: inline-flex;
+    align-items: center;
+    margin: -3px; 
+    margin-left:  35%;
+    
+
+  }
+
+  .checkbox{
+    margin:8px; 
+  }
+  
+
+.text-end{
+   margin: 10px;
 }

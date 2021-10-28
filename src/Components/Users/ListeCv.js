@@ -1,13 +1,23 @@
+
+
+
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Fragment, useState } from "react";
 import { Calendar } from "react-calendar";
 import { Form, Row, Col } from "react-bootstrap";
+import MyDatepickerComponent  from '../Shared/MyDatepickerComponent';
+
+
+
 
 const ListeCv = () => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [value, onChange] = useState(new Date());
+
+ 
 
   return (
     <main className="container main ">
@@ -25,15 +35,28 @@ const ListeCv = () => {
                     </Col>
                     <Col>
                       <Fragment className="d-flex">
-                        <Button
+                        {/* <Button
                           onClick={() => setShow(!show)}
                           variant="outline-success"
                         >
-                          Calendrier
-                        </Button>
-                        {show ? (
-                          <Calendar onChange={setDate} value={date} />
-                        ) : null}
+                         
+                        </Button> */}
+                        <MyDatepickerComponent/>
+
+{/*              
+                              <div>
+                                  {show ?                              
+                                <Calendar
+                                  onChange={onChange}
+                                  value={value}
+                                />
+                                : null}
+                              </div>
+                             */}
+                        {/* {show ? (
+                          <Calendar className="Button" onChange={setDate} value={date} />
+                        ) : null} */}
+                   
                       </Fragment>
                     </Col>
                   </Row>
@@ -76,11 +99,12 @@ const ListeCv = () => {
                   <Row>
                     <Col>
                       <Form.Select aria-label="Default select example">
-                        <option>Formation</option>
-                        <option value="1">débutant</option>
-                        <option value="2">Aucun diplôme</option>
+                        {/* <option>Formation</option> */}
+                        <option value="1">Aucun diplôme</option>
                         <option value="2">Bac</option>
                         <option value="2">Bac +2</option>
+                        <option value="2">Bac +3/4</option>
+                        <option value="2">Bac +5</option>
                       </Form.Select>
                     </Col>
                   </Row>
@@ -88,65 +112,70 @@ const ListeCv = () => {
                     <h6 className="titre"> Cursus</h6>
                     <Col>
                       <Form.Select aria-label="Default select example">
-                        <option>Cursus</option>
+                        {/* <option>Cursus</option> */}
                         <option value="1">DW</option>
                         <option value="2">DWWM</option>
-                        <option value="2">Community manager</option>
-                        <option value="2">Bac +2</option>
+                        <option value="3">Community manager</option>
+                        <option value="4">Autre</option>
+                        {/* <option value="2">Bac +2</option> */}
                       </Form.Select>
                     </Col>
                   </Row>
                 </Col>
                 <Col>
                   <h6 className="titre"> Langues étrangères</h6>
+
                   <Row>
-                    <Col>
-                      <input type="radio" value="Anglais" name="langues" />{" "}
+                    <div className="langue">
+                      <input className="checkbox" type="checkbox" value="Anglais" name="langues" />{" "}
                       Anglais
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="Espagnol" name="langues" />{" "}
+                    </div>
+                 
+                  
+                    <div className="langue">
+                      <input className="checkbox" type="checkbox" value="Espagnol" name="langues" />{" "}
                       Espagnol
-                    </Col>
+                    </div>
+
+                    <div className="langue">
+                      <input  className="checkbox" type="checkbox" value="Arabe" name="langues" /> Arabe
+                    </div>
+                    
                   </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="Arabe" name="langues" /> Arabe
-                    </Col>
-                  </Row>
+
+
                 </Col>
                 <Col>
                   <h6 className="titre">Langages de programations</h6>
                   <Row>
-                    <Col>
-                      <input type="radio" value="HTML" name="langage" /> HTML
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="CSS" name="langage" /> CSS
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="Javascript" name="langage" />{" "}
+         
+                    <div className="langage">
+                      <input  className="checkbox" type="checkbox" value="HTML" name="langage" /> HTML
+                      </div>
+                
+                    <div className="langage">
+                      <input  className="checkbox" type="checkbox" value="CSS" name="langage" /> CSS
+                      </div>
+
+                
+                    <div className="langage">
+                      <input  className="checkbox" type="checkbox" value="Javascript" name="langage" />{" "}
                       Javascript
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="PHP" name="langage" /> PHP
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <input type="radio" value="MySQL" name="langage" /> MySQL
-                    </Col>
+                      </div>
+            
+                    <div className="langage">
+                      <input  className="checkbox" type="checkbox" value="PHP" name="langage" /> PHP
+                      </div>
+             
+               
+                    <div className="langage">
+                      <input   className="checkbox" className="checkbox" type="checkbox" value="MySQL" name="langage" /> MySQL
+                      </div>
+          
                   </Row>
                 </Col>
               </Row>
+              </div>
               <div className="text-end">
                 <Button variant="outline-success" type="submit">
                   filtrer
@@ -187,8 +216,9 @@ const ListeCv = () => {
                 Supprimer un CV
               </Link>
             </div>
-          </div>
-    </main>
+              </main>
+
+
   );
 };
 

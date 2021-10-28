@@ -31,7 +31,7 @@ const InscriptionPage = () => {
 
   const registerUser = async (user) => {
     try {
-      await axios.post("http://localhost:3060/users", user);
+      await axios.post("http://localhost:3001/users", user);
       await axios.post("/email", user);
     } catch (error) {
       console.error(error);
@@ -40,7 +40,7 @@ const InscriptionPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3060/users")
+      .get("http://localhost:3001/users")
       .then((result) => setUsers(result.data));
   }, []);
 

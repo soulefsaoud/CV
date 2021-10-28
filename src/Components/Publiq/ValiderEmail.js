@@ -27,7 +27,7 @@ const ValidationEmailPage = ({ user }) => {
           k = k + 1;
           users[i].auth = true;
           console.log(users);
-          axios.put(`http://localhost:3060/users/${users[i].id}`, users[i]);
+          axios.put(`http://localhost:3001/users/${users[i].id}`, users[i]);
         }
       }
       if (k === 1) {
@@ -43,7 +43,7 @@ const ValidationEmailPage = ({ user }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3060/users")
+      .get("http://localhost:3001/users")
       .then((result) => setUsers(result.data));
   }, []);
 

@@ -2,14 +2,14 @@ const validate = (values) => {
   const errors = {};
   if (!values.firstname) {
     errors.firstname = "Merci de communiquer votre prénom";
-  } else if (values.firstname.length < 6) {
-    errors.firstname = "Au minimum 6 caractères";
+  } else if (values.firstname.length < 2) {
+    errors.firstname = "Au minimum 2 caractères";
   }
 
   if (!values.lastname) {
     errors.lastname = "Merci de communiquer votre nom";
-  } else if (values.lastname.length < 6) {
-    errors.lastname = "Au minimum 6 caractères";
+  } else if (values.lastname.length < 2) {
+    errors.lastname = "Au minimum 2 caractères";
   }
 
   if (!values.email) {
@@ -20,8 +20,8 @@ const validate = (values) => {
 
   if (!values.password) {
     errors.password = "Merci de communiquer votre mot de passe";
-  } else if (values.lastname.length < 6) {
-    errors.lastname = "Au minimum 6 caractères";
+  } else if (values.lastname.length < 2) {
+    errors.lastname = "Au minimum 2 caractères";
   }
 
   if (values.confirm !== values.password) {

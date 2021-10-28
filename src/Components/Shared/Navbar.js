@@ -78,7 +78,27 @@ const NavPage = () => {
                     S'inscrire
                   </NavLink>
                 </li>
+
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='/InfoProfessRecruteurPage'>
+                  info professs recruteur
+                  </NavLink>
+                </li>
+
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='/ProfilDetailspage'>
+                    Profil details
+                  </NavLink>
+                </li>
+
+          
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='/InfoPersoRecruteurPage'>
+                  info perso recruteur
+                  </NavLink>
+                </li>
               </ul>
+         
             </Navbar.Collapse>
           </Nav>
         </Navbar>

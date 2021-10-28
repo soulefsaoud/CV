@@ -1,19 +1,53 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import InfoPerso from "../Publiq/InfoPerso";
+import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import ProfilDetailsInfoPerso from "../Publiq/InfoPerso";
+import { BrowserRouter as Router } from 'react-router-dom';
+import axios from "axios";
 
-const ProfilDetailsPage = ({ user }) => {
+
+import { useHistory } from 'react-router-dom';
+import history from "react-router-dom";
+import { Component } from "react";
+
+
+
+ 
+
+    const ProfilDetailsPage = ({ user }) => {
+
+
+   const [users, setUsers] = useState([]);
   const [date, setDate] = useState(new Date());
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
   const [show, setShow] = useState(false);
-
   console.log(date.toLocaleDateString());
+
+  // const registerUser = async (user) => {
+  //   try {
+  //     await axios.post("http://localhost:3002/users", user);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3002/users")
+  //     .then((result) => setUsers(result.data));
+  // }, []);
+
+  
   return (
-    <main className="container main">
-      {user && user.isAuthenticated ? (
+  
+    
+    // <main className="container main">
+    //   {user && user.isAuthenticated ? (
         <>
           <div>
             <Row className="d-flex align-items-center">
@@ -50,25 +84,53 @@ const ProfilDetailsPage = ({ user }) => {
                 </Row>
               </Form>
             </div>
-            <div>
+       
               <h3>Créer mon CV au format Philiance </h3>
               <h6 className="titre">Informations personnelles</h6>
               <div className="icons icon1">
                 <div>
-                  <p>Prénom Nom</p>
+                <Row>
+                <Col>
+              <Form.Group className="mb-3">
+                <Form.Control type="text" placeholder="Prenom" />
+              </Form.Group>
+            </Col>
+                 <Col>
+              <Form.Group className="mb-3">
+                <Form.Control type="text" placeholder="Nom" />
+              </Form.Group>
+            </Col>
+            </Row>
+                <Form.Group className="mb-3">
+            <Form.Control type="text" placeholder="Adresse" />
+          </Form.Group>
+
+          <Row>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Control type="text" placeholder="Code postal" />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Control type="text" placeholder="Ville" />
+              </Form.Group>
+            </Col>
+          </Row>
                   <p>Adresse</p>
                   <p>Code postal - Ville</p>
                   <p>email</p>
                   <p>numéro de téléphone</p>
                 </div>
-                <div className="">
-                  <Link to="#">
-                    <i className="fas fa-pen"></i>
-                  </Link>
+                <div className=""><Link to="/InfoPerso">Modifier</Link></div>
                 </div>
-              </div>
-            </div>
+               
+                <Link to="chart" target="_blank" to="/InfoPerso" >Test</Link>
+                <Link to="/InfoPerso" className="btn btn-primary">Sign up</Link>
+                <InfoPerso/>
+            
 
+             
             <div>
               <div className="iconsPlus">
                 <h6 className="titre">Experiences professionnelles</h6>
@@ -361,11 +423,15 @@ const ProfilDetailsPage = ({ user }) => {
             </div>
           </section>
         </>
-      ) : (
-        <h1>Vous n'êtes pas identifié por cette page</h1>
-      )}
-    </main>
-  );
-};
+      // ) : (
+        // <h1>Vous n'êtes pas identifié por cette page</h1>
+      // )}
+  //   </main
+  )
 
-export default ProfilDetailsPage;
+}
+
+ 
+  
+
+ export default ProfilDetailsPage;

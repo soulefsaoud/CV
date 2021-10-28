@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Calendar from "react-calendar";
 
-const InfoProfessRecruteurPage = () => {
+function InfoProfessRecruteurPage() {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
@@ -33,8 +33,7 @@ const InfoProfessRecruteurPage = () => {
                 <Form.Group className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="Disponible a partir du "
-                  />
+                    placeholder="Disponible a partir du " />
                 </Form.Group>
               </Col>
               <Col md={2}>
@@ -43,7 +42,7 @@ const InfoProfessRecruteurPage = () => {
                     Calendrier
                   </Button>
 
-                  {show ? <Calendar onChange={setDate} value={date} /> : null}
+                  {show ? <Calendar className="Button" onChange={setDate} value={date} /> : null}
                 </Fragment>
               </Col>
               <Col md={6}>
@@ -64,5 +63,5 @@ const InfoProfessRecruteurPage = () => {
       </div>
     </div>
   );
-};
+}
 export default InfoProfessRecruteurPage;

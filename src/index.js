@@ -10,6 +10,8 @@ import "font-awesome/css/font-awesome.min.css";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "react-calendar/dist/Calendar.css";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +19,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

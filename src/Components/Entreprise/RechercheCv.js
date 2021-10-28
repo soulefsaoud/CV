@@ -10,6 +10,8 @@ import {
   CardGroup
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import MyDatepickerComponent from '../Shared/MyDatepickerComponent'
+
 
 const RechercheCvPage = ({ user }) => {
   const [date, setDate] = useState(new Date())
@@ -52,7 +54,7 @@ const RechercheCvPage = ({ user }) => {
                   </Col>
                   <Col>
                     <Fragment className='d-flex'>
-                      <Button
+                      {/* <Button
                         onClick={() => setShow(!show)}
                         variant='outline-primary'
                       >
@@ -60,7 +62,8 @@ const RechercheCvPage = ({ user }) => {
                       </Button>
                       {show ? (
                         <Calendar onChange={setDate} value={date} />
-                      ) : null}
+                      ) : null} */}
+                      <MyDatepickerComponent/>
                     </Fragment>
                   </Col>
                 </Row>

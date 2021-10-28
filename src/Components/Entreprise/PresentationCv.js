@@ -72,4 +72,4 @@ const PresentationCvpage = ({ user }) => {
   )
 }
 
-export default PresentationCvpage
+export default PresentationCvpage;

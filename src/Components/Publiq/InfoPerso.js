@@ -7,9 +7,7 @@ import axios from "axios";
   //  console.log("toto1");
   //  const [users, setUsers] = useState([]);
     class InfoPersoPage extends React.Component{
-      
-    
-
+  
     state = {
       fname: "Mark",
       lname: "Otto",

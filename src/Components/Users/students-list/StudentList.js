@@ -11,16 +11,21 @@ const StudentList = ({admin}) => {
     useEffect(() => {
         const students = async() => {
             try {
-                const {data} = await axios.get("/users")
-                const list = data.filter(u => u.role === "auditeur")
+                const {data} = await axios.get("/candidates", {
+                    headers: {
+                        "accept": "application/json"
+                    }
+                })
 
-                setStudents(list)
+                setStudents(data)
             } catch (e) {
                 console.error(e.message)
             }
         }
         students()
     }, []);
+
+    console.log(students)
 
     const deleteUser = async (id) => {
         try {

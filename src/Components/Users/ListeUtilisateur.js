@@ -8,21 +8,21 @@ const UserList = () => {
   const[admin, setAdmin]= useState(false)
   const [toggle, setToggle] = useState(true)
 
-  useEffect(() => {
-    const getAdmin = async () => {
-      try {
-        const {data} = await axios.get("/logged")
-        const logged = data.role
-
-        if (logged === "admin") {
-          setAdmin(true)
-        }
-      } catch (e) {
-        console.error(e.message)
-      }
-    }
-    getAdmin()
-  }, []);
+  // useEffect(() => {
+  //   const getAdmin = async () => {
+  //     try {
+  //       const {data} = await axios.get("/logged")
+  //       const logged = data.role
+  //
+  //       if (logged === "admin") {
+  //         setAdmin(true)
+  //       }
+  //     } catch (e) {
+  //       console.error(e.message)
+  //     }
+  //   }
+  //   getAdmin()
+  // }, []);
 
   return (
       <div className={"container my-5"}>

@@ -32,13 +32,13 @@ function App() {
   const[users, setUsers]= useState([])
   const[loggedUser, setLoggedUser]= useState()
 
-  useEffect(()=>{
-    axios.get('/users').then(result=>setUsers(result.data))
-  },[])
-
-  useEffect(()=>{
-    axios.get('/logged').then(result=>setLoggedUser(result.data))
-  },[])
+  // useEffect(()=>{
+  //   axios.get('/users').then(result=>setUsers(result.data))
+  // },[])
+  //
+  // useEffect(()=>{
+  //   axios.get('/logged').then(result=>setLoggedUser(result.data))
+  // },[])
 
   return (
     <BrowserRouter>

@@ -10,7 +10,7 @@ const EntreprisesList = ({admin}) => {
     useEffect(() => {
         const entreprises = async() => {
             try {
-                const {data} = await axios.get("http://localhost:3001/users")
+                const {data} = await axios.get("/users")
                 const list = data.filter(u => u.role === "entreprise")
 
                 setEntreprises(list)
@@ -23,7 +23,7 @@ const EntreprisesList = ({admin}) => {
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete("http://localhost:3001/users/" + id);
+            await axios.delete("/users/" + id);
             const list = entreprises.filter(user => {
                 return user.id !== id;
             });
@@ -34,28 +34,15 @@ const EntreprisesList = ({admin}) => {
     };
 
     return (
-        <main className="container main w-50">
+        <main className="container">
             <>
                 <div className="text-center">
-                    <h1>Liste des utilisateurs</h1>
-                    <Table striped bordered hover size="sm">
-                        <thead>
-                        <tr>
-                            <th>Prénom</th>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Numéro de telephone</th>
-                            <th>Entreprise</th>
-                            {admin && (<th>Actions</th>)}
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <h1>Liste des entreprises</h1>
+                    <div className="row my-5">
                         {entreprises.length > 0 ? entreprises.map((u) => (
                             <UserItem admin={admin} deleteUser={deleteUser} user={u} />
                         )) : <h1>Loading</h1>}
-                        </tbody>
-                    </Table>
-
+                    </div>
                     {admin && (
                         <Link className="btn btn-outline-primary" to="/add-entreprise">
                             Ajouter une entreprise

@@ -6,11 +6,12 @@ import {Link} from "react-router-dom";
 
 const StudentList = ({admin}) => {
     const [students, setStudents] = useState([]);
+    console.log(admin)
 
     useEffect(() => {
         const students = async() => {
             try {
-                const {data} = await axios.get("http://localhost:3001/users")
+                const {data} = await axios.get("/users")
                 const list = data.filter(u => u.role === "auditeur")
 
                 setStudents(list)
@@ -23,7 +24,7 @@ const StudentList = ({admin}) => {
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete("http://localhost:3001/users/" + id);
+            await axios.delete("/users/" + id);
             const newList = students.filter(user => {
                 return user.id !== id;
             });
@@ -34,27 +35,15 @@ const StudentList = ({admin}) => {
     };
 
     return (
-        <main className="container main w-50">
+        <main className="container">
             <>
                 <div className="text-center">
-                    <h1>Liste des utilisateurs</h1>
-                    <Table striped bordered hover size="sm">
-                        <thead>
-                        <tr>
-                            <th>Prénom</th>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Numéro de telephone</th>
-                            {admin && (<th>Actions</th>)}
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <h1>Liste des élèves</h1>
+                    <div className="row my-5">
                         {students.length > 0 ? students.map((u) => (
                             <UserItem admin={admin} deleteUser={deleteUser} user={u} />
                         )) : <h1>Loading</h1>}
-                        </tbody>
-                    </Table>
-
+                    </div>
                     {admin && (
                         <Link className="btn btn-outline-primary" to="/add-user">
                             Ajouter un utilisateur

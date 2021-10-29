@@ -11,7 +11,7 @@ const UserList = () => {
   useEffect(() => {
     const getAdmin = async () => {
       try {
-        const {data} = await axios.get("http://localhost:3001/logged")
+        const {data} = await axios.get("/logged")
         const logged = data.role
 
         if (logged === "admin") {
@@ -25,7 +25,7 @@ const UserList = () => {
   }, []);
 
   return (
-      <div className={"container"}>
+      <div className={"container my-5"}>
         <div className={"mb-4 w-50 mx-auto d-flex justify-content-between"}>
           <Button onClick={() => setToggle(true)} variant={"primary"}>Liste des élèves</Button>
           <Button onClick={() => setToggle(false)} variant={"secondary"}>Liste des entreprises</Button>

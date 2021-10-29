@@ -55,10 +55,7 @@
   border: 2px solid lightgray;
   padding: 10px;
 }
-i {
-  font-size: 30px;
-  padding-right: 20px;
-}
+
 .icons {
   display: flex;
   justify-content: space-between;

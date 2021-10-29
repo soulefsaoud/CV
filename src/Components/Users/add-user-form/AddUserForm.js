@@ -45,7 +45,7 @@ const AddUserForm = () => {
 
     const registerUser = async (user) => {
         try {
-            await axios.post("http://localhost:3001/users", user);
+            await axios.post("/users", user);
         } catch (error) {
             console.error(error);
         }

@@ -2,26 +2,59 @@ import React, {Fragment, useState, useEffect} from "react";
 import Calendar from "react-calendar";
 import {Form, Button, Row, Col, Image} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
-import InfoPerso from "../Publiq/InfoPerso";
 import axios from "axios";
 
 
 const ProfilDetailsPage = () => {
     const {id} = useParams()
     const [user, setUser] = useState()
+    const [exp, setExp] = useState([])
+
+    const getExperiences = async () => {
+        const {data} = await axios.get(`/experiences/`)
+        const experiences = data.filter(e => e.user === id)
+        console.log(experiences)
+        setExp([...experiences])
+    }
+
+    const deleteExperience = async id => {
+        try {
+            await axios.delete(`/experiences/${id}`)
+            await getExperiences()
+        } catch (e) {
+            console.error(e.message)
+        }
+    }
+
+    const getUser = async () => {
+        const {data} = await axios.get(`/users/${id}`)
+        setUser(data)
+    }
+
 
     useEffect(() => {
-        const getUser = async() => {
-            const {data} = await axios.get(`http://localhost:3001/users/${id}`)
-            setUser(data)
-        }
         getUser()
     }, [])
+
+    useEffect(() => {
+        getExperiences()
+    }, [])
+
     const [date, setDate] = useState(new Date());
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
-    const [show3, setShow3] = useState(false);
-    const [show, setShow] = useState(false);
+    const [showAvatar, setShowAvatar] = useState(false);
+    const [avatar, setAvatar] = useState("");
+
+    const sendAvatar = async(e) => {
+        e.preventDefault()
+        try {
+            await axios.patch(`/users/${id}`, {avatar})
+            await getUser()
+        } catch (e) {
+            console.error(e.message)
+        }
+    }
 
     // const registerUser = async (user) => {
     //   try {
@@ -38,12 +71,12 @@ const ProfilDetailsPage = () => {
     // }, []);
 
 
-    return (
-        <>
+    return !user ? <h1>Chargement en cours ...</h1> : (
+        <Fragment>
             <div>
                 <Row className="d-flex align-items-center">
                     <Col xs={6} md={2}>
-                        <Image src="https://picsum.photos/100" roundedCircle/>
+                        <Image style={{height: 150, width: 150, objectFit: "cover"}} className={"img-fluid rounded"} src={user.avatar ? user.avatar : "https://picsum.photos/100"} roundedCircle/>
                     </Col>
                     <Col>
                         <h1>{user ? `Profil de ${user.first_name} ${user.last_name}` : "Chargement"}</h1>
@@ -76,138 +109,68 @@ const ProfilDetailsPage = () => {
                     </Form>
                 </div>
 
-                <h3>Créer mon CV au format Philiance </h3>
-                <h6 className="titre">Informations personnelles</h6>
-                <div className="icons icon1">
-                    <div>
-                        <Row>
-                            <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder={user && user.first_name}/>
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder={user && user.last_name}/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Form.Group className="mb-3">
-                            <Form.Control type="text" placeholder="Adresse"/>
-                        </Form.Group>
-
-                        <Row>
-                            <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="Code postal"/>
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group className="mb-3">
-                                    <Form.Control type="text" placeholder="Ville"/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <p>Adresse</p>
-                        <p>Code postal - Ville</p>
-                        <p>email</p>
-                        <p>numéro de téléphone</p>
-                    </div>
-                    <div className=""><Link to="/InfoPerso">Modifier</Link></div>
-                </div>
-
-                <Link to="chart" target="_blank" to="/InfoPerso">Test</Link>
-                <Link to="/InfoPerso" className="btn btn-primary">Sign up</Link>
-                <InfoPerso/>
+                <h3 className={"mb-5"}>Créer mon CV au format Philiance </h3>
 
 
-                <div>
-                    <div className="iconsPlus">
-                        <h6 className="titre">Experiences professionnelles</h6>
-                        <i className="fas fa-plus-circle "></i>
-                    </div>
-                    <Form>
-                        <Row>
-                            <Col>
-                                <Form.Group className="mb-3 ">
+                <div className={"info__perso"}>
+                    <h6 className="titre">Informations personnelles</h6>
+                    <p>Nom complet: {user ? user.first_name + ' ' + user.last_name : "Chargement"}</p>
+                    <p>Email: {user ? user.email : "Chargement"}</p>
+                    <p>Téléphone: {user ? user.telephone : "Chargement"}</p>
+                    {/*<p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p>*/}
+                    <Button as={Link} to={"#!"}>Modifier mes données</Button>
+                    <Button variant={"info"} onClick={() => setShowAvatar(!showAvatar)}>Ajouter une image</Button>
+
+                    {
+                        showAvatar && (
+                            <Form onSubmit={sendAvatar} className={"w-25 my-3"}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Votre avatar</Form.Label>
                                     <Form.Control
                                         type="text"
-                                        placeholder="Intitulé du poste"
+                                        name={"avatar"}
+                                        value={avatar}
+                                        onChange={(e) => setAvatar(e.target.value)}
                                     />
                                 </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group className="mb-3 ">
-                                    <Form.Control type="text" placeholder="Entreprise"/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group className="mb-3 ">
-                                    <Form.Control type="text" placeholder="Ville"/>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Fragment>
-                                <Col md={5}>
-                                    <Form.Group className="mb-3 ">
-                                        <Form.Control type="text" placeholder="Du"/>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={1}>
-                                    <Button onClick={() => setShow(!show)} variant="primary">
-                                        Calendrier
-                                    </Button>
+                                <button type={"submit"} className={"btn btn-primary"}>Envoyer</button>
+                            </Form>
+                        )
+                    }
+                </div>
 
-                                    {show ? (
-                                        <Calendar onChange={setDate} value={date}/>
-                                    ) : null}
-                                </Col>
-                            </Fragment>
+                <hr className={"my-5"}/>
 
-                            <Fragment>
-                                <Col md={5}>
-                                    <Form.Group className="mb-3 ">
-                                        <Form.Control type="text" placeholder="Au"/>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={1}>
-                                    <Button
-                                        onClick={() => setShow3(!show3)}
-                                        variant="primary"
-                                    >
-                                        Calendrier
-                                    </Button>
+                {/* EXPERIENCES PROFESSIONNELLES*/}
+                <div className={"exp__perso mb-5"}>
+                    <h6 className="titre">Experiences professionnelles</h6>
+                    {
+                        !exp ? <h1>Expériences professionnelles à renseigner</h1> :
+                            exp.map((e, idx) => (
+                                <div key={idx} className="card mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title">Titre: {e.title}</h5>
+                                        <p className="card-text">Entreprise: {e.entreprise}</p>
+                                        <p className="card-text">Ville: {e.city}</p>
+                                        <p className="card-text">Description du poste: {e.description}</p>
+                                        <h6 className="card-subtitle mb-2 text-muted">Du: {e.from} - Au: {e.to}</h6>
+                                        <Link to={`/modify-experience/${e.id}`} className="card-link btn btn-warning">
+                                            <i className="fas fa-pen"></i>
+                                        </Link>
+                                        <button onClick={() => deleteExperience(e.id)}
+                                                className="card-link btn btn-danger">
+                                            <i className="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            ))
+                    }
+                    {/*<p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p>*/}
+                    <Button className={"my-3"} as={Link} to={`/add-experience/${id}`}>Ajouter une expérience</Button>
+                </div>
+                {/* FIN EXPERIENCES PROFESSIONNELLES*/}
 
-                                    {show3 ? (
-                                        <Calendar onChange={setDate} value={date}/>
-                                    ) : null}
-                                </Col>
-                            </Fragment>
-                        </Row>
-
-                        <Form.Group className="mb-3">
-                            <Form.Check
-                                type="checkbox"
-                                label="Rendre visible Pour les recruteurs"
-                            />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3 ">
-                            <Form.Control
-                                as="textarea"
-                                placeholder="Description (recommandé)"
-                            />
-                        </Form.Group>
-                    </Form>
-                    <div className="MonProfilButton">
-                        <Button variant="outline-primary"> Sauvegarder </Button>
-                        <Button variant="outline-primary"> Annuler </Button>
-                    </div>
+                <div>
                     <div className="borderDiv icons">
                         <div>
                             <h6>Développeur from end</h6>
@@ -412,7 +375,7 @@ const ProfilDetailsPage = () => {
                     </Form>
                 </div>
             </section>
-        </>
+        </Fragment>
     )
 
 }

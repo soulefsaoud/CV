@@ -25,17 +25,19 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import AddUserForm from "./Components/Users/add-user-form/AddUserForm";
 import AddEntrepriseForm from "./Components/Users/add-entreprise-form/AddEntrepriseForm";
+import ExperiencesForm from "./Components/Users/experiences_form/ExperiencesForm";
+import ModifyExperience from "./Components/Users/modify-experience/ModifyExperience";
 
 function App() {
   const[users, setUsers]= useState([])
   const[loggedUser, setLoggedUser]= useState()
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/users').then(result=>setUsers(result.data))
+    axios.get('/users').then(result=>setUsers(result.data))
   },[])
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/logged').then(result=>setLoggedUser(result.data))
+    axios.get('/logged').then(result=>setLoggedUser(result.data))
   },[])
 
   return (
@@ -62,10 +64,12 @@ function App() {
           <Route exact path='/add-entreprise'>
             <AddEntrepriseForm />
           </Route>
-          <Route exact path='/Connexion'>
-            <ConnexionPage />
+          <Route exact path='/add-experience/:id'>
+            <ExperiencesForm />
           </Route>
-
+          <Route exact path='/modify-experience/:exp'>
+            <ModifyExperience />
+          </Route>
           <Route exact path='/ProfilDetailsPage/:id'>
             <ProfilDetailsPage />
           </Route>
@@ -107,7 +111,7 @@ function App() {
           />
           <Route exact path='/ContactPage' component={ContactPage} />
         </Switch>
-        <FooterPage />
+        {/*<FooterPage />*/}
       </div>
     </BrowserRouter>
   )

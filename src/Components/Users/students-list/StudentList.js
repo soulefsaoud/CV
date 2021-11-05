@@ -11,7 +11,7 @@ const StudentList = ({admin}) => {
     useEffect(() => {
         const students = async() => {
             try {
-                const {data} = await axios.get("/candidates", {
+                const {data} = await axios.get("http://localhost:3001/users/?=auditeur", {
                     headers: {
                         "accept": "application/json"
                     }

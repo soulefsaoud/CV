@@ -25,7 +25,7 @@ const ConnexionPagee = ({ setLoggedUser }) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post("/api/login", {
+      const { data } = await axios.post("http://localhost:3001/login", {
         email: user.email,
         password: user.password,
       });

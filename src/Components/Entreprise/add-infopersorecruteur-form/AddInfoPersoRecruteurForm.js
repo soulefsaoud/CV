@@ -4,27 +4,25 @@ import {Button, Form, InputGroup} from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
-import validate from "../../validations/newUser_valid"
+import validate from "../../validations/newEntreprise_valid"
 
-const AddUserForm = () => {
+const AddInfoPersoRecruteurForm = () => {
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
-            id: uuidv4(),
-            email: "",
+            // id: uuidv4(),
             first_name: "",
-            last_name: "",
-            telephone: "",
-            role: "auditeur",
-        },
+             sociale:"",
+            city:"",
+             code_postale:"",
+           },
 
         validate,
         onSubmit: async (values) => {
 
             await registerUser({ ...values});
-            console.log({...values})
-            history.push("/ListUser");
+            history.push(`/ListUser`);
             emailjs
                 .send(
                     "service_ffghfghfghfgm",
@@ -45,7 +43,7 @@ const AddUserForm = () => {
 
     const registerUser = async (user) => {
         try {
-            await axios.post("http://localhost:3001/users", user);
+            await axios.post(`http://localhost:3001/users`, user);
         } catch (error) {
             console.error(error);
         }
@@ -55,7 +53,7 @@ const AddUserForm = () => {
         <div className={"container mt-5"}>
             <Form onSubmit={formik.handleSubmit}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Prénom</Form.Label>
+                    <Form.Label>Nom</Form.Label>
                     <Form.Control
                         type="text"
                         name={"first_name"}
@@ -71,47 +69,48 @@ const AddUserForm = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Nom</Form.Label>
+                    <Form.Label>Sociale</Form.Label>
                     <Form.Control
                         type="text"
-                        name={"last_name"}
-                        value={formik.values.last_name}
+                        name={"sociale"}
+                        value={formik.values.sociale}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
                     <Form.Text className="text-danger">
-                        {formik.touched.last_name &&
-                        formik.errors.last_name &&
-                        formik.errors.last_name}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Numero de telephone</Form.Label>
-                    <Form.Control
-                        type="telephone"
-                        name={"telephone"}
-                        value={formik.values.telephone}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                    />
-                    <Form.Text className="text-danger">
-                        {formik.touched.telephone && formik.errors.telephone && formik.errors.telephone}
+                        {formik.touched.sociale && formik.errors.sociale && formik.errors.sociale}
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>ville</Form.Label>
                     <Form.Control
-                        type="email"
-                        name={"email"}
-                        value={formik.values.email}
+                        type="text"
+                        name={"city"}
+                        value={formik.values.city}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
                     <Form.Text className="text-danger">
-                        {formik.touched.email &&
-                        formik.errors.email &&
-                        formik.errors.email}
+                        {formik.touched.city &&
+                        formik.errors.city &&
+                        formik.errors.city}
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Code Postale</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name={"CodePostale"}
+                        value={formik.values.code_postale}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    <Form.Text className="text-danger">
+                        {formik.touched.code_postale &&
+                        formik.errors.code_postale &&
+                        formik.errors.code_postale}
                     </Form.Text>
                 </Form.Group>
 
@@ -124,4 +123,4 @@ const AddUserForm = () => {
     );
 };
 
-export default AddUserForm;
+export default AddInfoPersoRecruteurForm;

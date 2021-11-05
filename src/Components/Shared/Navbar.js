@@ -86,7 +86,7 @@ const NavPage = () => {
                 </li>
 
                 <li className='nav-item'>
-                  <NavLink className='nav-link' to='/ProfilDetailspage'>
+                  <NavLink className='nav-link' to='/ProfilDetails'>
                     Profil details
                   </NavLink>
                 </li>

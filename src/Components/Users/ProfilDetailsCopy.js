@@ -3,9 +3,7 @@ import Calendar from "react-calendar";
 import {Form, Button, Row, Col, Image} from "react-bootstrap";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
-import ExperiencesProfessionnellesPage from "./ExperiencesProfessionnelles";
-import FormationsProfessionnellesPage from "./FormationsProfessionnelles";
-import ModifyInformationsProfessionnellesPage from "./ModifyInformationsProfessionnelles";
+
 
 const ProfilDetailsPage = () => {
     const {id} = useParams()
@@ -13,11 +11,9 @@ const ProfilDetailsPage = () => {
     const[users, setUsers]= useState([])
     const [exp, setExp] = useState([])
     const [form, setForm] = useState([])
-    const [inform, setInform] = useState([])
-    const [comp, setComp] = useState([])
 
     const getExperiences = async () => {
-        const {data} = await axios.get(`http://localhost:3001/experiences/`)
+        const {data} = await axios.get("http://localhost:3001/experiences")
         const experiences = data.filter(e => e.user === id)
         console.log(experiences)
         setExp([...experiences])
@@ -25,21 +21,16 @@ const ProfilDetailsPage = () => {
 
     const deleteExperience = async id => {
         try {
-            await axios.delete(`http://localhost:3001/experiences/${id}`)
+            await axios.delete("http://localhost:3001/experiences")
             await getExperiences()
         } catch (e) {
             console.error(e.message)
         }
     }
 
-    const getUser = async () => {
-        const {data} = await axios.get(`http://localhost:3001/users/${id}`)
-        setUser(data)
-    }
-
- 
+    
     const getFormations = async () => {
-        const {data} = await axios.get(`http://localhost:3001/formations/`)
+        const {data} = await axios.get("http://localhost:3001/formations")
         const formations = data.filter(e => e.user === id)
         console.log(formations)
         setForm([...formations])
@@ -47,48 +38,18 @@ const ProfilDetailsPage = () => {
     
     const deleteFormation = async id => {
         try {
-            await axios.delete(`http://localhost:3001/formations/${id}`)
+            await axios.delete("http://localhost:3001/formations")
             await getFormations()
         } catch (e) {
             console.error(e.message)
         }
     }
 
-    const getCompetences = async () => {
-        const {data} = await axios.get(`http://localhost:3001/competences/`)
-        const competences = data.filter(e => e.user === id)
-        console.log(competences)
-        setComp([...competences])
-    }
+    const getUser = async () => {
+        const {data} = await axios.get('http://localhost:3001/users')
+        setUser(data)
+    };
 
-    const deleteCompetence = async id => {
-        try {
-            await axios.delete(`http://localhost:3001/competences/${id}`)
-            await getCompetences()
-        } catch (e) {
-            console.error(e.message)
-        }
-    }
-
-    const getInformations = async () => {
-        const {data} = await axios.get(`http://localhost:3001/informations/`)
-        const informations = data.filter(e => e.user === id)
-        console.log(informations)
-        setInform([...informations])
-    }
-    
-    const deleteInformation = async id => {
-        try {
-            await axios.delete(`http://localhost:3001/informations/${inform}`)
-            await getInformations()
-        } catch (e) {
-            console.error(e.message)
-        }
-    }
-
-    useEffect(() => {
-        getInformations()
-    }, [])
 
 
     useEffect(() => {
@@ -104,9 +65,6 @@ const ProfilDetailsPage = () => {
     }, [])
 
 
-    useEffect(() => {
-        getCompetences()
-    }, [])
 
     const [date, setDate] = useState(new Date());
     const [show1, setShow1] = useState(false);
@@ -117,7 +75,7 @@ const ProfilDetailsPage = () => {
     const sendAvatar = async(e) => {
         e.preventDefault()
         try {
-            await axios.patch(`http://localhost:3001/users/${id}`, {avatar})
+            await axios.patch('http://localhost:3001/users/${id}', {avatar})
             await getUser()
         } catch (e) {
             console.error(e.message)
@@ -134,13 +92,21 @@ const ProfilDetailsPage = () => {
 
     useEffect(() => {
       axios
-        .get('http://localhost:3001/users')
+        .get('http://localhost:3001/users/${id}')
         .then((result) => setUsers(result.data));
+        
     }, []);
 
-  console.log("users " + user);
-    // return !user ? <h1>Chargement en cours ...</h1> : (
-         return(
+    useEffect(() => {
+        axios
+          .get('http://localhost:3001/formations/${id}')
+          .then((result) => setUsers(result.data));
+         
+      }, []);
+
+//   console.log("USERS" + user);
+    //  return !user ? <h1>Chargement en cours ...</h1> : (
+      return (
         <Fragment>
             <div>
                 <Row className="d-flex align-items-center">
@@ -179,44 +145,20 @@ const ProfilDetailsPage = () => {
                 </div>
 
                 <h3 className={"mb-5"}>Créer mon CV au format Philiance </h3>
-{/* 
-            <ModifyInformationsProfessionnellesPage /> */}
 
-                     {/* <div className={"info__perso"}> */}
-                    {/* <h6 className="titre">Informations personnelles</h6>
+
+                <div className={"info__perso"}>
+                    <h6 className="titre">Informations personnelles</h6>
                     <p>Nom complet: {user ? user.first_name + ' ' + user.last_name : "Chargement"}</p>
                     <p>Email: {user ? user.email : "Chargement"}</p>
                     <p>Téléphone: {user ? user.telephone : "Chargement"}</p>
-                     <p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p> */}
+                    {/*<p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p>*/}
+                    <Button as={Link} to={"#!"}>Modifier mes données</Button>
+                    <Button variant={"info"} onClick={() => setShowAvatar(!showAvatar)}>Ajouter une image</Button>
 
-                 <div className={"form__perso mb-5"}>
-            <h6 className="titre">Formations</h6>
-            {
-
-             !inform ? <h1>Formations à renseigner</h1> :
-                inform.map((e, idi) => (
-                    <div key={idi} className="card mb-3">
-                     <div className="card-body">
-                    <h5 className="card-title">Nom: {e.first_name}</h5>
-                    <p className="card-text">Prenom: {e.last_name}</p>
-                    <p className="card-text">Email: {e.email}</p>
-                    <p className="card-text">Adresse: {e.address}</p>
-                    <p className="card-text">Telephone: {e.telephone}</p>
-
-                    <Link to={`/modify-information/${e.id}`} className="card-link btn btn-warning">
-                     <i className="fas fa-pen"></i>
-                    </Link>
-                   {/* <Button as={Link} to={`/modify-information/${e.id}`}>Modifier mes données</Button> */}
-                    {/* <Button variant={"info"} onClick={() => setShowAvatar(!showAvatar)}>Ajouter une image</Button>  */}
-                               
-
-                    <button onClick={() => deleteFormation(e.id)}
-                            className="card-link btn btn-danger">
-                               <i className="fas fa-times"></i>
-                    </button>
-                    
-                        {/* showAvatar && ( */}
-                            {/* <Form onSubmit={sendAvatar} className={"w-25 my-3"}>
+                    {
+                        showAvatar && (
+                            <Form onSubmit={sendAvatar} className={"w-25 my-3"}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Votre avatar</Form.Label>
                                     <Form.Control
@@ -225,24 +167,17 @@ const ProfilDetailsPage = () => {
                                         value={avatar}
                                         onChange={(e) => setAvatar(e.target.value)}
                                     />
-                                </Form.Group> */}
-                                {/* <button type={"submit"} className={"btn btn-primary"}>Envoyer</button> */}
-                            {/* </Form> */}
-                        {/* ) */}
-                      
-             </div>
+                                </Form.Group>
+                                <button type={"submit"} className={"btn btn-primary"}>Envoyer</button>
+                            </Form>
+                        )
+                    }
                 </div>
-                ))
-
-                        }
-                        </div>
 
                 <hr className={"my-5"}/>
 
-                    <ExperiencesProfessionnellesPage />
-
                 {/* EXPERIENCES PROFESSIONNELLES*/}
-                {/* <div className={"exp__perso mb-5"}>
+                <div className={"exp__perso mb-5"}>
                     <h6 className="titre">Experiences professionnelles</h6>
                     {
                         !exp ? <h1>Expériences professionnelles à renseigner</h1> :
@@ -266,13 +201,11 @@ const ProfilDetailsPage = () => {
                             ))
                     }
                     {/*<p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p>*/}
-                    {/* <Button className={"my-3"} as={Link} to={`/add-experience/${id}`}>Ajouter une expérience</Button>
-                </div> */} 
-                {/* FIN EXPERIENCES PROFESSIONNELLES */}
+                    <Button className={"my-3"} as={Link} to={`/add-experience/${id}`}>Ajouter une expérience</Button>
+                </div>
+                {/* FIN EXPERIENCES PROFESSIONNELLES*/}
 
-
-
-                {/* <div>
+                <div>
                     <div className="borderDiv icons">
                         <div>
                             <h6>Développeur from end</h6>
@@ -288,23 +221,21 @@ const ProfilDetailsPage = () => {
                             </Link>
                         </div>
                     </div>
-                </div> */}
-                <div>
-                    {/* <div className="iconsPlus">
+                </div>
+{/*              
+                    <div className="iconsPlus">
                         <h6 className="titre">Formation</h6>
                         <i className="fas fa-plus-circle  "></i>
                     </div> */}
-
-                    <FormationsProfessionnellesPage />
-
+                    
                 {/* FORMATIONS*/}
-                {/* <div className={"form__perso mb-5"}>
-                                    <h6 className="titre">Formations</h6>
-                                    {
+                 <div className={"form__perso mb-5"}>
+                    <h6 className="titre">Formations</h6>
+                    {
                         
-                          !form ? <h1>Formations à renseigner</h1> :
-                                 form.map((e, idy) => (
-                                <div key={idy} className="card mb-3">
+                         !form ? <h1>Formations à renseigner</h1> :
+                                form.map((e, idx) => (
+                                <div key={idx} className="card mb-3">
                                     <div className="card-body">
                                         <h5 className="card-title">Nom de la formation: {e.first_name}</h5>
                                         <p className="card-text">Niveau d'études: {e.niveau_etudes}</p>
@@ -319,16 +250,15 @@ const ProfilDetailsPage = () => {
                                         </button>
                                     </div>
                               </div>
-                                 ))
-                            } 
-                    
+                                ))
+                    }
                     {/* <p>Adresse: {user && user.address ? user.adress : "Données à renseigner"}</p> */}
-                    {/* <Button className={"my-3"} as={Link} to={`/add-formation/${id}`}>Ajouter une formation</Button>
-                </div>  */} 
+                    <Button className={"my-3"} as={Link} to={"/add-formation/${id}"}>Ajouter une formation</Button>
+                </div> 
                 {/* FIN FORMATIONS */}
 
-
-                    {/* <Form>
+{/* 
+                    <Form>
                         <Form.Group className="mb-3 ">
                             <Form.Control type="text" placeholder="Nom de la formation"/>
                         </Form.Group>
@@ -343,7 +273,7 @@ const ProfilDetailsPage = () => {
 
                         <Form.Group className="mb-3 ">
                             <Form.Control type="text" placeholder="Lieu"/>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Row>
                             <Fragment>
@@ -386,7 +316,7 @@ const ProfilDetailsPage = () => {
                                 </Col>
                             </Fragment>
                         </Row>
-                    </Form> */}
+                 
                     <div>
                         <Row>
                             <Col md={4}>
@@ -421,39 +351,9 @@ const ProfilDetailsPage = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                        <div>
-        {/* COMPETENCES PROFESSIONNELLES*/}
-        <div className={"exp__perso mb-5"}>
-                        <h6 className="titre">Compétences professionnelles</h6>
-                         {
-                        !comp ? <h1>Compétences professionnelles à renseigner</h1> :
-                            comp.map((e, idx) => (
-                                <div key={idx} className="card mb-3">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Titre: {e.title}</h5>
-                                        <p className="card-text">Etablissement: {e.etablissement}</p>
-                                        <p className="card-text">Ville: {e.city}</p>
-                                        <p className="card-text">Cursus: {e.cursus}</p>
-                                        <h6 className="card-subtitle mb-2 text-muted">Du: {e.from} - Au: {e.to}</h6>
-                                        <Link to={`/modify-competence/${e.id}`} className="card-link btn btn-warning">
-                                            <i className="fas fa-pen"></i>
-                                        </Link>
-                                        <button onClick={() => deleteCompetence(e.id)}
-                                                className="card-link btn btn-danger">
-                                            <i className="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
-                    }
-                    {/*<p>Adresse: {user && user.address ? user.adress : "Donnée à renseigner"}</p>*/}
-                    <Button className={"my-3"} as={Link} to={`/add-competence/${id}`}>Ajouter une compétence</Button>
-                </div>
-                {/* FIN EXPERIENCES PROFESSIONNELLES*/}
-
-
-                    {/* <div className="iconsPlus">
+             
+                <div>
+                    <div className="iconsPlus">
                         <h6 className="titre">Compétences professionnelles</h6>
                         <i className="fas fa-plus-circle"></i>
                     </div>
@@ -484,7 +384,7 @@ const ProfilDetailsPage = () => {
                                 <Form.Control type="text" placeholder="Niveau"/>
                             </Form.Group>
                         </Col>
-                    </Row> */}
+                    </Row>
 
                     <div className="MonProfilButton">
                         <Button variant="outline-primary"> Sauvegarder </Button>
@@ -541,7 +441,7 @@ const ProfilDetailsPage = () => {
                 </div>
             </section>
         </Fragment>
-    )
+      )
 
 }
 

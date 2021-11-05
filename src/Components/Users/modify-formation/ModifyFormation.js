@@ -3,47 +3,43 @@ import React, {Fragment, useState, useEffect} from "react";
 import axios from "axios";
 import {useHistory, useParams} from "react-router-dom"
 
-const ModifyExperience = () => {
+const ModifyFormation = () => {
     const history = useHistory()
-    const {exp} = useParams()
-    const [experience, setExperience] = useState()
-    const [title, setTitle] = useState(experience && experience.title)
-    const [entreprise, setEntreprise] = useState()
-    const [city, setCity] = useState()
-    const [from, setFrom] = useState()
-    const [to, setTo] = useState()
-    const [description, setDescription] = useState()
-
+    const {form} = useParams()
+    const [formation, setFormation] = useState()
+    const [first_name, setFirstName] = useState(formation && formation.first_name)
+    const [lieu, setLieu] = useState()
+    const [niveau_etudes, setNiveauEtudes] = useState()
+    const [etablissement, setEtablissement] = useState()
+  
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.patch(`http://localhost:3001/experiences/${exp}`, {title, entreprise, city, from, to, description})
+            await axios.patch(`http://localhost:3001/formations/${form}`, {first_name, niveau_etudes, etablissement, lieu})
             history.goBack()
         } catch (e) {
             console.error(e.message)
         }
     }
 
-    const fetchExperience = async () => {
+    const fetchFormation = async () => {
         try {
-            const {data} = await axios.get(`http://localhost:3001/experiences/${exp}`)
-            setExperience(data)
-            setTitle(data.title)
-            setEntreprise(data.entreprise)
-            setCity(data.city)
-            setFrom(data.from)
-            setTo(data.to)
-            setDescription(data.description)
-        } catch (e) {
+            const {data} = await axios.get(`http://localhost:3001/formations/${form}`)
+            setFormation(data)
+            setFirstName(data.first_name)
+            setNiveauEtudes(data.niveau_etudes)
+            setLieu(data.city)
+            setEtablissement(data.etablissement)
+           } catch (e) {
             console.error(e.message)
         }
     }
 
     useEffect(() => {
-        fetchExperience()
+        fetchFormation()
     }, [])
 
-    return !experience ? <h1>Loading</h1> : (
+    return !formation ? <h1>Loading</h1> : (
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col>
@@ -51,9 +47,9 @@ const ModifyExperience = () => {
                         <Form.Control
                             type="text"
                             placeholder="Intitulé du poste"
-                            name={"title"}
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
+                            name={"first_name"}
+                            value={first_name}
+                            onChange={e => setFirstName(e.target.value)}
                         />
                     </Form.Group>
                 </Col>
@@ -63,10 +59,10 @@ const ModifyExperience = () => {
                     <Form.Group className="mb-3 ">
                         <Form.Control
                             type="text"
-                            placeholder="Entreprise"
-                            name={"entreprise"}
-                            value={entreprise}
-                            onChange={e => setEntreprise(e.target.value)}
+                            placeholder="Formation"
+                            name={"formation"}
+                            value={formation}
+                            onChange={e => setFormation(e.target.value)}
                         />
                     </Form.Group>
                 </Col>
@@ -77,9 +73,9 @@ const ModifyExperience = () => {
                         <Form.Control
                             type="text"
                             placeholder="Ville"
-                            name={"city"}
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
+                            name={"lieu"}
+                            value={lieu}
+                            onChange={e => setLieu(e.target.value)}
                         />
                     </Form.Group>
                 </Col>
@@ -89,11 +85,11 @@ const ModifyExperience = () => {
                     <Col md={6}>
                         <Form.Group className="mb-3 ">
                             <Form.Control
-                                type="date"
-                                placeholder="Du"
-                                name={"from"}
-                                value={from}
-                                onChange={e => setFrom(e.target.value)}
+                                type="text"
+                                placeholder="Etablissement"
+                                name={"etablissement"}
+                                value={etablissement}
+                                onChange={e => setEtablissement(e.target.value)}
                             />
                         </Form.Group>
                     </Col>
@@ -103,11 +99,11 @@ const ModifyExperience = () => {
                     <Col md={6}>
                         <Form.Group className="mb-3 ">
                             <Form.Control
-                                type="date"
-                                placeholder="Au"
-                                name={"to"}
-                                value={to}
-                                onChange={e => setTo(e.target.value)}
+                                type="text"
+                                placeholder="Niveau d'études"
+                                name={"niveau_etudes"}
+                                value={niveau_etudes}
+                                onChange={e => setNiveauEtudes(e.target.value)}
                             />
                         </Form.Group>
                     </Col>
@@ -121,15 +117,7 @@ const ModifyExperience = () => {
                 />
             </Form.Group>
 
-            <Form.Group className="mb-3 ">
-                <Form.Control
-                    as="textarea"
-                    placeholder="Description (recommandé)"
-                    name={"description"}
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                />
-            </Form.Group>
+          
 
             <Form.Group className="mb-3 ">
                 <Button className={"mx-3"} type={"submit"} variant="outline-primary"> Sauvegarder </Button>
@@ -138,4 +126,4 @@ const ModifyExperience = () => {
         </Form>
     )
 }
-export default ModifyExperience
+export default ModifyFormation;

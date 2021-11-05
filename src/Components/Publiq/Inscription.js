@@ -34,8 +34,8 @@ const Inscription = ({user}) => {
 
     const registerUser = async (user) => {
         try {
-            await axios.post("/users", user);
-            await axios.patch("/logged", user)
+            await axios.post("http://localhost:3001/users", user);
+            await axios.patch("http://localhost:3001/logged", user)
             history.push(`/ProfilDetailsPage/${user.id}`)
         } catch (error) {
             console.error(error);

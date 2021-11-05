@@ -10,7 +10,7 @@ const EntreprisesList = ({admin}) => {
     useEffect(() => {
         const entreprises = async() => {
             try {
-                const {data} = await axios.get("/users")
+                const {data} = await axios.get("http://localhost:3001/users")
                 const list = data.filter(u => u.role === "entreprise")
 
                 setEntreprises(list)
@@ -23,7 +23,7 @@ const EntreprisesList = ({admin}) => {
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete("/users/" + id);
+            await axios.delete("http://localhost:3001/users/" + id);
             const list = entreprises.filter(user => {
                 return user.id !== id;
             });

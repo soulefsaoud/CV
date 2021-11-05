@@ -4,27 +4,25 @@ import {Button, Form, InputGroup} from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import emailjs from "emailjs-com";
-import validate from "../../validations/newUser_valid"
+import validate from "../../validations/newEntreprise_valid"
 
-const AddUserForm = () => {
+const AddFormationForm = () => {
     const history = useHistory();
 
     const formik = useFormik({
         initialValues: {
             id: uuidv4(),
-            email: "",
             first_name: "",
-            last_name: "",
-            telephone: "",
-            role: "auditeur",
-        },
+            niveau_etudes:"",
+            etablissement:"",
+            lieu:"",
+           },
 
         validate,
         onSubmit: async (values) => {
 
             await registerUser({ ...values});
-            console.log({...values})
-            history.push("/ListUser");
+            history.push(`/ListUser`);
             emailjs
                 .send(
                     "service_ffghfghfghfgm",
@@ -45,7 +43,7 @@ const AddUserForm = () => {
 
     const registerUser = async (user) => {
         try {
-            await axios.post("http://localhost:3001/users", user);
+            await axios.post(`http://localhost:3001/users`, user);
         } catch (error) {
             console.error(error);
         }
@@ -71,47 +69,48 @@ const AddUserForm = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Nom</Form.Label>
+                    <Form.Label>Niveau d'études</Form.Label>
                     <Form.Control
                         type="text"
-                        name={"last_name"}
-                        value={formik.values.last_name}
+                        name={"niveau_etudes"}
+                        value={formik.values.niveau_etudes}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
                     <Form.Text className="text-danger">
-                        {formik.touched.last_name &&
-                        formik.errors.last_name &&
-                        formik.errors.last_name}
-                    </Form.Text>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Numero de telephone</Form.Label>
-                    <Form.Control
-                        type="telephone"
-                        name={"telephone"}
-                        value={formik.values.telephone}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                    />
-                    <Form.Text className="text-danger">
-                        {formik.touched.telephone && formik.errors.telephone && formik.errors.telephone}
+                        {formik.touched.niveau_etudes && formik.errors.niveau_etudes && formik.errors.niveau_etudes}
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Etablissement</Form.Label>
                     <Form.Control
-                        type="email"
-                        name={"email"}
-                        value={formik.values.email}
+                        type="text"
+                        name={"etablissement"}
+                        value={formik.values.etablissement}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
                     <Form.Text className="text-danger">
-                        {formik.touched.email &&
-                        formik.errors.email &&
-                        formik.errors.email}
+                        {formik.touched.etablissement &&
+                        formik.errors.etablissement &&
+                        formik.errors.etablissement}
+                    </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Lieu</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name={"lieu"}
+                        value={formik.values.city}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                    <Form.Text className="text-danger">
+                        {formik.touched.city &&
+                        formik.errors.city &&
+                        formik.errors.city}
                     </Form.Text>
                 </Form.Group>
 
@@ -124,4 +123,4 @@ const AddUserForm = () => {
     );
 };
 
-export default AddUserForm;
+export default AddFormationForm;

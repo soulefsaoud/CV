@@ -5,28 +5,28 @@ import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import {useHistory, useParams} from "react-router-dom"
 
-const ExperiencesForm = () => {
+const CompetencesForm = () => {
     const history = useHistory()
     const {id} = useParams()
 
     const formik = useFormik({
         initialValues: {
             title: '',
-            entreprise: '',
+            etablissement: '',
             city: '',
-            from: '',
-            to: '',
-            description: ''
+            cursus: '',
+            to: ''
+          
         },
         onSubmit: async values => {
-            await saveExperience({id: uuidv4(), user: id, ...values})
+            await saveCompetence({id: uuidv4(), user: id, ...values})
             history.goBack()
         },
     });
 
-    const saveExperience = async (user) => {
+    const saveCompetence = async (user) => {
         try {
-            await axios.post('/experiences', user)
+            await axios.post('/competences', user)
             console.log("Success");
         } catch (e) {
             console.error(e.message)
@@ -40,7 +40,7 @@ const ExperiencesForm = () => {
                     <Form.Group className="mb-3 ">
                         <Form.Control
                             type="text"
-                            placeholder="Intitulé du poste"
+                            placeholder="Intitulé da la formation"
                             name={"title"}
                             value={formik.values.title}
                             onChange={formik.handleChange}
@@ -54,9 +54,9 @@ const ExperiencesForm = () => {
                     <Form.Group className="mb-3 ">
                         <Form.Control
                             type="text"
-                            placeholder="Entreprise"
-                            name={"entreprise"}
-                            value={formik.values.entreprise}
+                            placeholder="Etablissement"
+                            name={"etablissement"}
+                            value={formik.values.etablissement}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
@@ -71,6 +71,20 @@ const ExperiencesForm = () => {
                             placeholder="Ville"
                             name={"city"}
                             value={formik.values.city}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 ">
+                        <Form.Control
+                            type="text"
+                            placeholder="Cursus"
+                            name={"cursus"}
+                            value={formik.values.cursus}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
@@ -134,4 +148,4 @@ const ExperiencesForm = () => {
         </Form>
     )
 }
-export default ExperiencesForm
+export default CompetencesForm
